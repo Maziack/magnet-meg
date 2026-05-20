@@ -25,6 +25,6 @@ func _physics_process(delta: float) -> void:
 	fall_state.handle_gravity(self, delta)
 	move_state.handle_horizontal_movement(self, player_input.input_horizontal)
 	jump_state.handle_jumping(self, player_input.get_jump_input())
-	magnetic_state.handle_magnetization(self, player_input.get_jump_input(), player_input.get_jump_release(), player_input.get_mag_toggle())
+	magnetic_state.handle_magnetization(player_input.get_mag_trigger())
 	velocity = velocity.clamp(Vector2(-1*max_velocity,-1*max_velocity),Vector2(max_velocity,max_velocity))
 	move_and_slide()

@@ -14,3 +14,6 @@ func get_jump_release():
 
 func get_mag_toggle():
 	return Input.is_action_just_pressed("mag_toggle")
+
+func get_mag_trigger():
+	return Input.get_action_strength("mag_trigger")

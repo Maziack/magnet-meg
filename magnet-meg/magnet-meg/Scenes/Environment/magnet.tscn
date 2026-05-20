@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bj3py5ysac0bx"]
 
-[ext_resource type="Script" path="res://Scripts/magnet.gd" id="1_qshmw"]
+[ext_resource type="Script" uid="uid://bpgrnlxin4hwo" path="res://Scripts/magnet.gd" id="1_qshmw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g010l"]
 resource_local_to_scene = true
@@ -13,7 +13,6 @@ radius = 45.72
 friction = 0.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gdlbk"]
-load_path = "res://.godot/imported/metal_ball.png-8ae78d81ec3228de583061727ec2b702.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iv362"]
 resource_local_to_scene = true

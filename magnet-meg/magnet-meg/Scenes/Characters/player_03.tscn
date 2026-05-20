@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://chi0hp6wl3wq"]
+[gd_scene load_steps=11 format=3 uid="uid://chi0hp6wl3wq"]
 
 [ext_resource type="Script" uid="uid://6hkwlvrqbj6r" path="res://Scripts/player_main.gd" id="1_k5iak"]
 [ext_resource type="Texture2D" uid="uid://cnc4ibu14a6if" path="res://Assets/art_placeholder/sprite/main_spritemap.png" id="2_e0stw"]
@@ -6,10 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://dxxp6kout04ax" path="res://Scenes/Components/state_fall.tscn" id="4_e0stw"]
 [ext_resource type="PackedScene" uid="uid://csoun5ycmrp6e" path="res://Scenes/Components/state_jump.tscn" id="5_6tubf"]
 [ext_resource type="PackedScene" uid="uid://btqdxlpjlruda" path="res://Scenes/Components/state_move.tscn" id="6_g4hqr"]
-[ext_resource type="Script" uid="uid://cbcr7fh6oibfo" path="res://Scripts/state_magnetize.gd" id="7_e0stw"]
+[ext_resource type="PackedScene" uid="uid://c572oxsejnasf" path="res://Scenes/Components/state_magnetize.tscn" id="7_ra8n0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q4j7j"]
 radius = 20.0
+
+[sub_resource type="Curve" id="Curve_1xgdn"]
+_data = [Vector2(0, 0), 0.0, 0.0799737, 0, 0, Vector2(0.624224, 0.00389111), 0.0, 0.0, 0, 0, Vector2(0.804348, 0.0661479), 1.05083, 1.05083, 0, 0, Vector2(0.92236, 0.330739), 4.03718, 4.03718, 0, 0, Vector2(1, 1), 6.86784, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_ra8n0"]
+_data = [Vector2(0.62, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input", "fall_state", "move_state", "jump_state", "magnetic_state")]
 safe_margin = 0.01
@@ -46,8 +54,12 @@ disabled = true
 
 [node name="State_Move" parent="." instance=ExtResource("6_g4hqr")]
 
-[node name="State_Magnetize" type="Node" parent="."]
-script = ExtResource("7_e0stw")
+[node name="State_Magnetize" parent="." instance=ExtResource("7_ra8n0")]
+fluxDensityLo = 0.01
+maxAccelerationLo = 75.0
+fluxDensityHi = 4.0
+magStrengthCurve = SubResource("Curve_1xgdn")
+magOrbitCurve = SubResource("Curve_ra8n0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -300)
