@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ck664gu32dpa0"]
+[gd_scene load_steps=12 format=4 uid="uid://ck664gu32dpa0"]
 
 [ext_resource type="Script" uid="uid://cy8ppxcro6bmc" path="res://Scripts/game_main.gd" id="1_d3dpw"]
 [ext_resource type="Texture2D" uid="uid://bxrj4sidvxiia" path="res://Assets/art_placeholder/tiles/Magic Rock.png" id="2_7fjoj"]
@@ -866,50 +866,23 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4n12y")
 sources/3 = SubResource("TileSetAtlasSource_bqrnd")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0gsxs"]
+[sub_resource type="Curve" id="Curve_0gsxs"]
 resource_local_to_scene = true
-radius = 685.8
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7fjoj"]
+[sub_resource type="Curve" id="Curve_3rba4"]
 resource_local_to_scene = true
-custom_solver_bias = 1.0
-radius = 22.86
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3rba4"]
+[sub_resource type="Curve" id="Curve_xanr5"]
 resource_local_to_scene = true
-radius = 685.8
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1rtsk"]
-resource_local_to_scene = true
-custom_solver_bias = 1.0
-radius = 22.86
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xanr5"]
-resource_local_to_scene = true
-radius = 685.8
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0w1lw"]
-resource_local_to_scene = true
-custom_solver_bias = 1.0
-radius = 22.86
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oybsa"]
-resource_local_to_scene = true
-radius = 685.8
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5obcw"]
-resource_local_to_scene = true
-custom_solver_bias = 1.0
-radius = 22.86
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7vt37"]
-resource_local_to_scene = true
-radius = 685.8
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8c42x"]
-resource_local_to_scene = true
-custom_solver_bias = 1.0
-radius = 22.86
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_d3dpw")
@@ -928,54 +901,16 @@ position = Vector2(-7, 631)
 max_velocity = 1800.0
 metadata/_edit_group_ = true
 
-[node name="Magnet" parent="Level" instance=ExtResource("5_d3dpw")]
-position = Vector2(-193, 168)
+[node name="Magnet" parent="." instance=ExtResource("5_d3dpw")]
+position = Vector2(-178, 285)
+collisionShapeCurve = SubResource("Curve_0gsxs")
 
-[node name="CollisionShape2D" parent="Level/Magnet/FieldInner" index="0"]
-shape = SubResource("CircleShape2D_0gsxs")
+[node name="Magnet2" parent="." instance=ExtResource("5_d3dpw")]
+position = Vector2(-1412, 268)
+collisionShapeCurve = SubResource("Curve_3rba4")
 
-[node name="CollisionShape2D" parent="Level/Magnet/Core" index="1"]
-shape = SubResource("CircleShape2D_7fjoj")
-
-[node name="Magnet2" parent="Level" instance=ExtResource("5_d3dpw")]
-position = Vector2(-1642, 182)
-
-[node name="CollisionShape2D" parent="Level/Magnet2/FieldInner" index="0"]
-shape = SubResource("CircleShape2D_3rba4")
-
-[node name="CollisionShape2D" parent="Level/Magnet2/Core" index="1"]
-shape = SubResource("CircleShape2D_1rtsk")
-
-[node name="Magnet3" parent="Level" instance=ExtResource("5_d3dpw")]
-position = Vector2(1281, 165)
-
-[node name="CollisionShape2D" parent="Level/Magnet3/FieldInner" index="0"]
-shape = SubResource("CircleShape2D_xanr5")
-
-[node name="CollisionShape2D" parent="Level/Magnet3/Core" index="1"]
-shape = SubResource("CircleShape2D_0w1lw")
-
-[node name="Magnet4" parent="Level" instance=ExtResource("5_d3dpw")]
-position = Vector2(-919, -1060)
-
-[node name="CollisionShape2D" parent="Level/Magnet4/FieldInner" index="0"]
-shape = SubResource("CircleShape2D_oybsa")
-
-[node name="CollisionShape2D" parent="Level/Magnet4/Core" index="1"]
-shape = SubResource("CircleShape2D_5obcw")
-
-[node name="Magnet5" parent="Level" instance=ExtResource("5_d3dpw")]
-position = Vector2(567, -1046)
-
-[node name="CollisionShape2D" parent="Level/Magnet5/FieldInner" index="0"]
-shape = SubResource("CircleShape2D_7vt37")
-
-[node name="CollisionShape2D" parent="Level/Magnet5/Core" index="1"]
-shape = SubResource("CircleShape2D_8c42x")
+[node name="Magnet3" parent="." instance=ExtResource("5_d3dpw")]
+position = Vector2(1047, 255)
+collisionShapeCurve = SubResource("Curve_xanr5")
 
 [editable path="Level/Player"]
-[editable path="Level/Magnet"]
-[editable path="Level/Magnet2"]
-[editable path="Level/Magnet3"]
-[editable path="Level/Magnet4"]
-[editable path="Level/Magnet5"]

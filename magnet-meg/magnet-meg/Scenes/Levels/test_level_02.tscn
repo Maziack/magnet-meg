@@ -89,48 +89,63 @@ drag_vertical_enabled = true
 
 [node name="Magnet" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(603, 19)
+orbitRadius = null
 
 [node name="Magnet4" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(999, 109)
+orbitRadius = null
 
 [node name="Magnet2" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(1418, 150)
+orbitRadius = null
 
 [node name="Magnet5" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(1906, 163)
+orbitRadius = null
 
 [node name="Magnet3" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(2478, 82)
+orbitRadius = null
 
 [node name="Magnet6" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(2843, -54)
+orbitRadius = null
 
 [node name="Magnet7" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(3208, -234)
+orbitRadius = null
 
 [node name="Magnet8" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(3578, -457)
+orbitRadius = null
 
 [node name="Magnet9" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(3869, -667)
+orbitRadius = null
 
 [node name="Magnet10" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(4160, -921)
+orbitRadius = null
 
 [node name="Magnet11" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(4527, -1152)
+orbitRadius = null
 
 [node name="Magnet12" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(4857, -1314)
+orbitRadius = null
 
 [node name="Magnet13" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(5297, -1402)
+orbitRadius = null
 
 [node name="Magnet14" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(5738, -1484)
+orbitRadius = null
 
 [node name="Magnet15" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(8012, -55)
+orbitRadius = null
 
 [node name="Background" type="Sprite2D" parent="Level"]
 z_index = -1

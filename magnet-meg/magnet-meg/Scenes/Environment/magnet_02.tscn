@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cypwm311n875m" path="res://Assets/art_placeholder/sprite/metal_ball.png" id="2_t4bjc"]
 
 [sub_resource type="Curve" id="Curve_t4bjc"]
-_data = [Vector2(0.00310559, 0.00389111), nan, 0.999212, 1, 1, Vector2(1, 1), 0.999212, 0.0, 1, 0]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
 point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t4bjc"]
@@ -28,7 +30,7 @@ radius = 22.86
 [node name="Magnet" type="Area2D"]
 script = ExtResource("1_gcysk")
 collisionShapeCurve = SubResource("Curve_t4bjc")
-coreRadius = 3.0
+orbitRadius = 3.0
 metadata/_edit_group_ = true
 
 [node name="FieldOuter" type="CollisionShape2D" parent="."]
@@ -62,8 +64,8 @@ debug_color = Color(0.888853, 0.000266837, 0.797836, 0.42)
 [node name="OrbitCenter" type="Node2D" parent="."]
 
 [node name="TargetPoint" type="Sprite2D" parent="."]
+visible = false
 
 [node name="Polygon2D" type="Polygon2D" parent="TargetPoint"]
-visible = false
 color = Color(1, 0.192157, 0.235294, 1)
 polygon = PackedVector2Array(0, -6, 6, 0, 0, 6, -6, 0)

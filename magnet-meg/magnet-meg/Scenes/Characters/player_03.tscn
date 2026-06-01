@@ -16,8 +16,8 @@ _data = [Vector2(0, 0), 0.0, 0.0799737, 0, 0, Vector2(0.624224, 0.00389111), 0.0
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_ra8n0"]
-_data = [Vector2(0.62, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0.85, 0), 0.0, 0.0, 0, 0, Vector2(0.965838, 0.143969), 3.48033, 3.48033, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input", "fall_state", "move_state", "jump_state", "magnetic_state")]
 safe_margin = 0.01

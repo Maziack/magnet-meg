@@ -2,9 +2,9 @@ class_name StateMagnetize
 extends Node
 
 @export_subgroup("Settings")
-@export_range(0.01, 0.1, 0.01) var fluxDensityLo:float = 0.02
+@export_range(0.01, 0.1, 0.01) var fluxDensityLo:float = 0.02 # In Tesla
 @export_range(50, 200, 25) var maxAccelerationLo:float = 150
-@export_range(0.5, 10, 0.5) var fluxDensityHi:float = 5.0
+@export_range(0.5, 10, 0.5) var fluxDensityHi:float = 5.0 # In Tesla
 @export_range(200, 500, 25) var maxAccelerationHi:float = 250
 @export var magStrengthCurve: Curve
 @export var magOrbitCurve: Curve

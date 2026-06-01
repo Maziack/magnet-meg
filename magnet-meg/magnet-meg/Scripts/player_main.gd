@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export_subgroup("Player Settings")
 @export var mass:float = 60
