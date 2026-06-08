@@ -1,5 +1,5 @@
 @tool
-extends Area2D
+extends Node2D
 
 var px_to_m = 30.48
 @export_subgroup("Settings")
@@ -7,36 +7,26 @@ var px_to_m = 30.48
 @export_range(1,10,0.25) var orbitRadius:float:												#in meters	100pix = ~3m
 	set(Radius):
 		orbitRadius = Radius
-		if Engine.is_editor_hint():
-			var scaledRadius = Radius*px_to_m
-			var fieldOuterRadius = scaledRadius*10
-			var fieldInnerRadius = scaledRadius*7.5
-			var coreRadius = scaledRadius*0.25
-			var coreSpriteScale = collisionShapeCurve.sample(coreRadius)
-			if $Orbit/CollisionShape2D:
-				$Orbit/CollisionShape2D.shape.radius = scaledRadius
-			if $FieldOuter:
-				$FieldOuter.shape.radius = fieldOuterRadius
-			if $FieldInner:
-				$FieldInner/CollisionShape2D.shape.radius = fieldInnerRadius
-			if $Core/CollisionShape2D:
-				$Core/CollisionShape2D.shape.radius = coreRadius
-			if $Core/Sprite2D:
-				$Core/Sprite2D.scale = Vector2(coreSpriteScale, coreSpriteScale)
-				print("Core Sprite Scale: ", coreSpriteScale)
-				print("Core Radius: ", coreRadius)
-
-#var orbitRadius:
-	#get:
-		#return coreRadius*2	
-	#set(value):
-			#orbitRadius = value
-			#if $Orbit/CollisionShape2D:
-				#$Orbit/CollisionShape2D.shape.radius = orbitRadius*px_to_m
+		var scaledRadius = Radius*px_to_m
+		var fieldOuterRadius = scaledRadius*10
+		var fieldInnerRadius = scaledRadius*7.5
+		var coreRadius = scaledRadius*0.25
+		#print(coreRadius)
+		var coreSpriteScale = collisionShapeCurve.sample(coreRadius)
+		if self.has_node(^"Orbit"):
+			self.get_node(^"Orbit/CollisionShape2D").shape.radius = scaledRadius
+		if self.has_node(^"FieldOuter"):
+			self.get_node(^"FieldOuter/CollisionShape2D").shape.radius = fieldOuterRadius
+		if self.has_node(^"FieldInner"):
+			self.get_node(^"FieldInner/CollisionShape2D").shape.radius = fieldInnerRadius
+		if self.has_node(^"Core"):
+			self.get_node(^"Core/CollisionShape2D").shape.radius = coreRadius
+			self.get_node(^"Core/Sprite2D").scale = Vector2(coreSpriteScale, coreSpriteScale)
 
 var orbitPos
 var orbitCenter
 var orbit
+var fieldOuter
 var fieldInner
 var approachAngle
 var targetVector:Vector2
@@ -58,30 +48,14 @@ func _ready() -> void:
 		#coreRadiusPx = coreRadius*px_to_m TRY REMOVING CONVERSION TO PX
 		orbitCenter = get_node("OrbitCenter")
 		orbit = get_node("Orbit")
+		fieldOuter = get_node("FieldOuter")
 		fieldInner = get_node("FieldInner").get_child(0)
 		targetPoint = get_node("TargetPoint")
 		oldLookAtRotation = orbitCenter.rotation
-		var scaledRadius = orbitRadius * px_to_m
-		var fieldOuterRadius = scaledRadius*10
-		var fieldInnerRadius = scaledRadius*7.5
-		var coreRadius = scaledRadius*0.25
-		var coreSpriteScale = collisionShapeCurve.sample(coreRadius)
-		if $Orbit/CollisionShape2D:
-			$Orbit/CollisionShape2D.shape.radius = scaledRadius
-		if $FieldOuter:
-			$FieldOuter.shape.radius = fieldOuterRadius
-		if $FieldInner:
-			$FieldInner/CollisionShape2D.shape.radius = fieldInnerRadius
-		if $Core/CollisionShape2D:
-			$Core/CollisionShape2D.shape.radius = coreRadius
-		if $Core/Sprite2D:
-			$Core/Sprite2D.scale = Vector2(coreSpriteScale, coreSpriteScale)
-			print("Core Sprite Scale: ", coreSpriteScale)
-			print("Core Radius: ", coreRadius)
 
 func _physics_process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
-		var outerBodies = get_overlapping_bodies()
+		var outerBodies = fieldOuter.get_overlapping_bodies()
 		for body in outerBodies:
 			if body is Player and body.magnetic_state.is_magnetic:
 				var playerPos = body.get_global_position()
@@ -90,8 +64,8 @@ func _physics_process(_delta: float) -> void:
 				set_mag_target(playerPos, playerReqOrbitStability)
 				add_mag_velocity(body, playerPos, playerReqMagStrength)
 
-
 func set_mag_target(playerPos,playerReqOrbitStability):
+	
 	orbitCenter.look_at(playerPos)
 	orbitPos = orbitCenter.get_global_position()
 	approachAngle = (playerPos-orbitPos).angle()
@@ -102,6 +76,12 @@ func set_mag_target(playerPos,playerReqOrbitStability):
 		targetVector = Vector2.UP.rotated(approachAngle)	#CCW
 	targetPos = orbitPos+(playerReqOrbitStability * targetVector * orbit.get_node("CollisionShape2D").shape.radius) # // coefficient of 0 for weak, 1 for strong
 	targetPoint.set_global_position(targetPos)
+
+func add_mag_velocity(player, playerPos, playerReqMagStrength):
+	var magVelocityFinal
+	magVelocityFinal = mag_velocity_lo_calc(player,playerPos).lerp(mag_velocity_hi_calc(player,playerPos),playerReqMagStrength)
+	oldLookAtRotation = orbitCenter.rotation
+	player.velocity += magVelocityFinal
 
 func mag_velocity_lo_calc(player, playerPos):
 	var magVector = playerPos.direction_to(targetPos)
@@ -131,9 +111,3 @@ func mag_velocity_hi_calc(player, playerPos):
 	###		orbitStability = playerPos.direction_to(orbitPos)	### or CCW orbit direction, similar to
 	###															### apogee/perigee orbit stabilization
 	return magVelocityHi
-
-func add_mag_velocity(player, playerPos, playerReqMagStrength):
-	var magVelocityFinal
-	magVelocityFinal = mag_velocity_lo_calc(player,playerPos).lerp(mag_velocity_hi_calc(player,playerPos),playerReqMagStrength)
-	oldLookAtRotation = orbitCenter.rotation
-	player.velocity += magVelocityFinal

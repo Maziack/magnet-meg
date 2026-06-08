@@ -1,52 +1,51 @@
 [gd_scene load_steps=9 format=3 uid="uid://cqhdjov61yqrr"]
 
-[ext_resource type="Script" uid="uid://bsu3q7tsdnoqc" path="res://Scripts/magnet_02_main.gd" id="1_gcysk"]
-[ext_resource type="Texture2D" uid="uid://cypwm311n875m" path="res://Assets/art_placeholder/sprite/metal_ball.png" id="2_t4bjc"]
-
-[sub_resource type="Curve" id="Curve_t4bjc"]
-resource_local_to_scene = true
-_limits = [0.0, 1.0, 0.0, 100.0]
-_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
-point_count = 2
+[ext_resource type="Script" uid="uid://bsu3q7tsdnoqc" path="res://Scripts/magnet_main.gd" id="1_chlbw"]
+[ext_resource type="Curve" uid="uid://bdq2wi76s3yqx" path="res://Scenes/Environment/Magnet/magnet_CollissionShapeCurve.tres" id="2_a1q1i"]
+[ext_resource type="Texture2D" uid="uid://cypwm311n875m" path="res://Assets/art_placeholder/sprite/metal_ball.png" id="3_hxggn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t4bjc"]
-radius = 914.4
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_g010l"]
 resource_local_to_scene = true
-radius = 685.8
+radius = 304.8
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e1rbx"]
-radius = 91.44
+[sub_resource type="CircleShape2D" id="CircleShape2D_b76a7"]
+resource_local_to_scene = true
+radius = 228.6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_use4b"]
+resource_local_to_scene = true
+radius = 30.48
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nt3uq"]
 friction = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iv362"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nsttj"]
 resource_local_to_scene = true
 custom_solver_bias = 1.0
-radius = 22.86
+radius = 7.62
 
-[node name="Magnet" type="Area2D"]
-script = ExtResource("1_gcysk")
-collisionShapeCurve = SubResource("Curve_t4bjc")
-orbitRadius = 3.0
+[node name="Magnet" type="Node2D"]
+script = ExtResource("1_chlbw")
+collisionShapeCurve = ExtResource("2_a1q1i")
+orbitRadius = 1.0
 metadata/_edit_group_ = true
 
-[node name="FieldOuter" type="CollisionShape2D" parent="."]
+[node name="FieldOuter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FieldOuter"]
 shape = SubResource("CircleShape2D_t4bjc")
-debug_color = Color(0.323047, 0.587378, 0.586803, 0.137255)
+debug_color = Color(0.321569, 0.588235, 0.588235, 0.137255)
 
 [node name="FieldInner" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FieldInner"]
-shape = SubResource("CircleShape2D_g010l")
+shape = SubResource("CircleShape2D_b76a7")
 debug_color = Color(1.44392e-06, 0.570208, 0.847314, 0.133333)
 
 [node name="Orbit" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Orbit"]
-shape = SubResource("CircleShape2D_e1rbx")
+shape = SubResource("CircleShape2D_use4b")
 debug_color = Color(0.560784, 0.556863, 0.196078, 0.129412)
 
 [node name="Core" type="StaticBody2D" parent="."]
@@ -54,11 +53,11 @@ physics_material_override = SubResource("PhysicsMaterial_nt3uq")
 
 [node name="Sprite2D" type="Sprite2D" parent="Core"]
 position = Vector2(9.53674e-07, -9.53674e-07)
-scale = Vector2(0.18, 0.18)
-texture = ExtResource("2_t4bjc")
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("3_hxggn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core"]
-shape = SubResource("CircleShape2D_iv362")
+shape = SubResource("CircleShape2D_nsttj")
 debug_color = Color(0.888853, 0.000266837, 0.797836, 0.42)
 
 [node name="OrbitCenter" type="Node2D" parent="."]

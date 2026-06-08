@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://bnef3dl8lonq8"]
+[gd_scene load_steps=25 format=4 uid="uid://bnef3dl8lonq8"]
 
 [ext_resource type="Script" uid="uid://cy8ppxcro6bmc" path="res://Scripts/game_main.gd" id="1_bfm5m"]
 [ext_resource type="Texture2D" uid="uid://ctwsfadq52rkx" path="res://Assets/art_placeholder/tiles/Tileset_Test.png" id="2_w3fgq"]
 [ext_resource type="PackedScene" uid="uid://chi0hp6wl3wq" path="res://Scenes/Characters/player_03.tscn" id="3_fvojj"]
-[ext_resource type="PackedScene" uid="uid://cqhdjov61yqrr" path="res://Scenes/Environment/magnet_02.tscn" id="4_fvojj"]
+[ext_resource type="PackedScene" uid="uid://cqhdjov61yqrr" path="res://Scenes/Environment/Magnet/magnet.tscn" id="4_fvojj"]
 [ext_resource type="Texture2D" uid="uid://ds8xal8tlrpvj" path="res://Assets/art_placeholder/sprite/pixel_Background.png" id="5_wbn5a"]
 [ext_resource type="Texture2D" uid="uid://ca7l017x0mf5s" path="res://Assets/art_placeholder/sprite/thumbs_up.png" id="6_5jvog"]
 [ext_resource type="Texture2D" uid="uid://cvausmp4c0rq1" path="res://Assets/art_placeholder/sprite/up_arrow.png" id="7_r5wsy"]
@@ -51,6 +51,96 @@ texture = ExtResource("2_w3fgq")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wbn5a")
 
+[sub_resource type="Curve" id="Curve_5jvog"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_r5wsy"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_c8ksu"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_jsxdm"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_b7adr"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_k8v6p"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5c2he"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ujdmh"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_u3kos"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6s6f7"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1qbmo"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ne6ow"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_stk0f"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_s7mln"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kwwgl"]
+resource_local_to_scene = true
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(7.62, 0.06), nan, 0.00787402, 1, 1, Vector2(76.2, 0.6), 0.00787402, -0.00787402, 1, 1]
+point_count = 2
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_bfm5m")
 
@@ -89,63 +179,63 @@ drag_vertical_enabled = true
 
 [node name="Magnet" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(603, 19)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_5jvog")
 
 [node name="Magnet4" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(999, 109)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_r5wsy")
 
 [node name="Magnet2" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(1418, 150)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_c8ksu")
 
 [node name="Magnet5" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(1906, 163)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_jsxdm")
 
 [node name="Magnet3" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(2478, 82)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_b7adr")
 
 [node name="Magnet6" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(2843, -54)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_k8v6p")
 
 [node name="Magnet7" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(3208, -234)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_5c2he")
 
 [node name="Magnet8" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(3578, -457)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_ujdmh")
 
 [node name="Magnet9" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(3869, -667)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_u3kos")
 
 [node name="Magnet10" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(4160, -921)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_6s6f7")
 
 [node name="Magnet11" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(4527, -1152)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_1qbmo")
 
 [node name="Magnet12" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(4857, -1314)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_ne6ow")
 
 [node name="Magnet13" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(5297, -1402)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_stk0f")
 
 [node name="Magnet14" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(5738, -1484)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_s7mln")
 
 [node name="Magnet15" parent="Level" instance=ExtResource("4_fvojj")]
 position = Vector2(8012, -55)
-orbitRadius = null
+collisionShapeCurve = SubResource("Curve_kwwgl")
 
 [node name="Background" type="Sprite2D" parent="Level"]
 z_index = -1
