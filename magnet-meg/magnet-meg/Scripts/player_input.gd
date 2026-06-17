@@ -12,8 +12,5 @@ func get_jump_input():
 func get_jump_release():
 	return Input.is_action_just_released("jump")
 
-func get_mag_toggle():
-	return Input.is_action_just_pressed("mag_toggle")
-
 func get_mag_trigger():
 	return Input.get_action_strength("mag_trigger")

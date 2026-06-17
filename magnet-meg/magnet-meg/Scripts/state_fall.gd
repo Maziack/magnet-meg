@@ -2,7 +2,7 @@ class_name StateFall
 extends Node
 
 @export_subgroup("Settings")
-@export var gravity:float
+@export var gravity:float = 1000
 
 var is_falling:bool = false
 

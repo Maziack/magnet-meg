@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=4 uid="uid://bnef3dl8lonq8"]
+[gd_scene format=4 uid="uid://bnef3dl8lonq8"]
 
-[ext_resource type="Script" uid="uid://cy8ppxcro6bmc" path="res://Scripts/game_main.gd" id="1_bfm5m"]
+[ext_resource type="Script" uid="uid://cy8ppxcro6bmc" path="res://Scripts/game.gd" id="1_bfm5m"]
 [ext_resource type="Texture2D" uid="uid://ctwsfadq52rkx" path="res://Assets/art_placeholder/tiles/Tileset_Test.png" id="2_w3fgq"]
-[ext_resource type="PackedScene" uid="uid://chi0hp6wl3wq" path="res://Scenes/Characters/player_03.tscn" id="3_fvojj"]
+[ext_resource type="PackedScene" uid="uid://chi0hp6wl3wq" path="res://Scenes/Characters/Player/player.tscn" id="3_fvojj"]
 [ext_resource type="PackedScene" uid="uid://cqhdjov61yqrr" path="res://Scenes/Environment/Magnet/magnet.tscn" id="4_fvojj"]
 [ext_resource type="Texture2D" uid="uid://ds8xal8tlrpvj" path="res://Assets/art_placeholder/sprite/pixel_Background.png" id="5_wbn5a"]
 [ext_resource type="Texture2D" uid="uid://ca7l017x0mf5s" path="res://Assets/art_placeholder/sprite/thumbs_up.png" id="6_5jvog"]

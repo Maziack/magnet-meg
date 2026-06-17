@@ -4,7 +4,7 @@ extends Node2D
 var px_to_m = 30.48
 @export_subgroup("Settings")
 @export var collisionShapeCurve:Curve
-@export_range(1,10,0.25) var orbitRadius:float:												#in meters	100pix = ~3m
+@export_range(1,10,0.1) var orbitRadius:float:						#in meters	100pix = ~3m
 	set(Radius):
 		orbitRadius = Radius
 		var scaledRadius = Radius*px_to_m
@@ -56,13 +56,13 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
 		var outerBodies = fieldOuter.get_overlapping_bodies()
-		for body in outerBodies:
-			if body is Player and body.magnetic_state.is_magnetic:
-				var playerPos = body.get_global_position()
-				var playerReqOrbitStability = body.magnetic_state.reqOrbitStability
-				var playerReqMagStrength = body.magnetic_state.reqMagStrength
+		for player in outerBodies:
+			if player is Player and player.is_magnetic:
+				var playerPos = player.get_global_position()
+				var playerReqOrbitStability = player.reqOrbitStability
+				var playerReqMagStrength = player.reqMagStrength
 				set_mag_target(playerPos, playerReqOrbitStability)
-				add_mag_velocity(body, playerPos, playerReqMagStrength)
+				add_mag_velocity(player, playerPos, playerReqMagStrength)
 
 func set_mag_target(playerPos,playerReqOrbitStability):
 	
@@ -86,11 +86,11 @@ func add_mag_velocity(player, playerPos, playerReqMagStrength):
 func mag_velocity_lo_calc(player, playerPos):
 	var magVector = playerPos.direction_to(targetPos)
 	var distance = orbitPos.distance_to(playerPos) / px_to_m	#distance in meters
-	var magStrength = player.magnetic_state.fluxDensity["Lo"] * (1.33 * 3.14159 * (coreRadiusPx**3)) #field strength x volume of sphere
+	var magStrength = player.fluxDensity["Lo"] * (1.33 * 3.14159 * (coreRadiusPx**3)) #field strength x volume of sphere
 	var magForce = magStrength / (distance*(0.5*fieldInner.shape.radius/coreRadiusPx))
 	#var magForce = magStrength / (distance**2) TRY CHANGING TO THIS ORIGINAL FORMULA
 	var magAcceleration = magForce / player.mass
-	var magVelocityLo = (magVector * magAcceleration * player.magnetic_state.is_magnetic).clamp(Vector2(-1*player.magnetic_state.maxAcceleration["Lo"],-1*player.magnetic_state.maxAcceleration["Lo"]),Vector2(player.magnetic_state.maxAcceleration["Lo"],player.magnetic_state.maxAcceleration["Lo"]))
+	var magVelocityLo = (magVector * magAcceleration * player.is_magnetic).clamp(Vector2(-1*player.maxAcceleration["Lo"],-1*player.maxAcceleration["Lo"]),Vector2(player.maxAcceleration["Lo"],player.maxAcceleration["Lo"]))
 	### var orbitStability = Vector2.ZERO						### Future experiment: When traveling 
 	### newDistance = playerPos.distance_to(orbitPos)			### past orbitCenter reduce forward 
 	### if distance > (oldDistance / px_to_m):					### velocity and nudge into either CW  
@@ -101,10 +101,10 @@ func mag_velocity_lo_calc(player, playerPos):
 func mag_velocity_hi_calc(player, playerPos):
 	var magVector = playerPos.direction_to(targetPos)
 	var distance = orbitPos.distance_to(playerPos) / px_to_m	#distance in meters
-	var magStrength = player.magnetic_state.fluxDensity["Hi"] * (1.33 * 3.14159 * (coreRadiusPx**3)) #field strength x volume of sphere
+	var magStrength = player.fluxDensity["Hi"] * (1.33 * 3.14159 * (coreRadiusPx**3)) #field strength x volume of sphere
 	var magForce = magStrength / (distance*(0.5*fieldInner.shape.radius/coreRadiusPx))
 	var magAcceleration = magForce / player.mass
-	var magVelocityHi = (magVector * magAcceleration * player.magnetic_state.is_magnetic).clamp(Vector2(-1*player.magnetic_state.maxAcceleration["Hi"],-1*player.magnetic_state.maxAcceleration["Hi"]),Vector2(player.magnetic_state.maxAcceleration["Hi"],player.magnetic_state.maxAcceleration["Hi"]))
+	var magVelocityHi = (magVector * magAcceleration * player.is_magnetic).clamp(Vector2(-1*player.maxAcceleration["Hi"],-1*player.maxAcceleration["Hi"]),Vector2(player.maxAcceleration["Hi"],player.maxAcceleration["Hi"]))
 	### var orbitStability = Vector2.ZERO						### Future experiment: When traveling 
 	### newDistance = playerPos.distance_to(orbitPos)			### past orbitCenter reduce forward 
 	### if distance > (oldDistance / px_to_m):					### velocity and nudge into either CW  

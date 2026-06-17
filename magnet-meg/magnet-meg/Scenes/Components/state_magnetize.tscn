@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c572oxsejnasf"]
-
-[ext_resource type="Script" uid="uid://cbcr7fh6oibfo" path="res://Scripts/state_magnetize.gd" id="1_xtepv"]
-
-[node name="State_Magnetize" type="Node"]
-script = ExtResource("1_xtepv")
