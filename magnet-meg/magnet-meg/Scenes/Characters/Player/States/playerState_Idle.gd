@@ -1,17 +1,22 @@
 extends PlayerState
 
-func enter(previous_state_path: String = "", data: Dictionary = {}) -> void:
+func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	player.velocity.x = 0.0
-	#player.animation_player.play("idle")
+	$"../../AnimatedSprite2D".stop()
 	print(owner.name," is ", name)
 
-func physics_update(_delta: float) -> void:
-	player.velocity.y += player.gravity * _delta
-	#player.move_and_slide()
+func physics_update(delta: float) -> void:
+	player.velocity.y += player.gravity * delta
 
 	if not player.is_on_floor():
 		finished.emit(FALLING)
 	elif Input.is_action_just_pressed("jump"):
 		finished.emit(JUMPING)
-	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-		finished.emit(RUNNING)
+	elif Input.is_action_pressed("move_left"):
+		data.animation = "move_left"
+		finished.emit(RUNNING,data)
+		data.clear()
+	elif Input.is_action_pressed("move_right"):
+		data.animation = "move_right"
+		finished.emit(RUNNING,data)
+		data.clear()

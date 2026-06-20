@@ -18,6 +18,11 @@ config/name="Magnet Meg"
 run/main_scene="uid://ck664gu32dpa0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[debug]
+
+settings/stdout/print_fps=true
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1280

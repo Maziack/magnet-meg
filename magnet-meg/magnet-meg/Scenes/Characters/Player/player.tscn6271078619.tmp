@@ -11,11 +11,11 @@
 [ext_resource type="Script" uid="uid://gwnfe01g5opc" path="res://Scenes/Characters/Player/States/playerState_Magnetic.gd" id="9_8gg06"]
 
 [sub_resource type="Curve" id="Curve_8gg06"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.56305, 0.028533697), 0.0, 0.0, 0, 0, Vector2(0.83675474, 0.08161926), 0.31945086, 0.31945086, 0, 0, Vector2(0.9345064, 0.18779051), 2.468482, 2.468482, 0, 0, Vector2(1, 1), 5.3119535, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.82418823, 0.13470483), 0.31808195, 0.31808195, 0, 0, Vector2(0.93617034, 0.3735901), 5.1715093, 5.1715093, 0, 0, Vector2(1, 1), 5.3119535, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Curve" id="Curve_cscr0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.9, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 4.56333, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.95296764, 0.06834793), 0.06971413, 0.06971413, 0, 0, Vector2(1, 1), 4.56333, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gg06"]
@@ -122,7 +122,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_left",
-"speed": 20.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -154,29 +154,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_right",
-"speed": 20.0
+"speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gg06"]
-height = 45.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_q4j7j"]
+radius = 20.0
 
-[node name="Player" type="CharacterBody2D" unique_id=980870281]
+[node name="Player" type="CharacterBody2D" unique_id=980870281 node_paths=PackedStringArray("moveState", "magState")]
 safe_margin = 0.01
 script = ExtResource("1_k5iak")
-jump_velocity = -350.0
-run_accel_speed = 3600.0
-run_decel_speed = 2700.0
-air_accel_speed = 1200.0
-air_decel_speed = 120.0
-top_input_speed = 500.0
-max_velocity = 2000.0
 magStrengthCurve = SubResource("Curve_8gg06")
 magOrbitCurve = SubResource("Curve_cscr0")
+moveState = NodePath("MoveStateMachine")
+magState = NodePath("MagStateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=103448341]
 position = Vector2(-31, -40)
 sprite_frames = SubResource("SpriteFrames_qn1vu")
-animation = &"move_left"
+animation = &"move_right"
 centered = false
 
 [node name="MainSpritemap" type="Sprite2D" parent="." unique_id=36160672]
@@ -187,10 +182,16 @@ hframes = 9
 vframes = 4
 frame = 28
 
+[node name="Collision_Complex" type="CollisionPolygon2D" parent="." unique_id=1454929320]
+visible = false
+position = Vector2(1, -8)
+polygon = PackedVector2Array(-4, -17, 0, -17, 4, -16, 8, -12, 9, -6, 8, 0, 5, 4, 7, 7, 6, 12, 5, 14, 6, 23, 9, 23, 10, 27, 9, 30, -9, 30, -11, 25, -9, 21, -8, 15, -11, 11, -11, 5, -11, 0, -11, -8, -10, -11, -9, -13, -7, -15)
+
 [node name="Collision_Simple" type="CollisionShape2D" parent="." unique_id=114138299]
 visible = false
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_8gg06")
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_q4j7j")
+disabled = true
 
 [node name="MoveStateMachine" parent="." unique_id=279273434 instance=ExtResource("3_xo8ps")]
 

@@ -1,6 +1,6 @@
 extends PlayerState
 
-func enter(previous_state_path: String = "", data: Dictionary = {}) -> void:
+func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	#player.animation_player.play("magnetic")
 	print(owner.name," is ", name)
 	player.is_magnetic = 1
