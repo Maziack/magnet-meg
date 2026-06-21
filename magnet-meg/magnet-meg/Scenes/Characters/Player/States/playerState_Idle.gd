@@ -3,7 +3,7 @@ extends PlayerState
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	player.velocity.x = 0.0
 	$"../../AnimatedSprite2D".stop()
-	print(owner.name," is ", name)
+	#print(owner.name," is ", name)
 
 func physics_update(delta: float) -> void:
 	player.velocity.y += player.gravity * delta

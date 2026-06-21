@@ -1,12 +1,14 @@
 extends PlayerState
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	print(owner.name," is ", name)
+	#print(owner.name," is ", name)
+	pass
 
 func physics_update(delta: float) -> void:
 	var direction_x := int(Input.get_axis("move_left","move_right"))
 	var velocity_delta:float = player.run_accel_speed if direction_x != 0 else player.run_decel_speed
-		
+	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (0.4 * player.run_decel_speed * delta)
+	
 	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*delta)
 	
 	if direction_x != 0:
