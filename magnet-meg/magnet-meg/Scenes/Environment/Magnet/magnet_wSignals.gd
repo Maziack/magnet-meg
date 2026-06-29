@@ -61,7 +61,7 @@ func _physics_process(_delta: float) -> void:
 				var playerReqOrbitStability = player.reqOrbitStability
 				var playerReqMagStrength = player.reqMagStrength
 				set_mag_target(playerPos, playerReqOrbitStability)
-				add_mag_velocity(player, playerPos, playerReqMagStrength)
+				add_mag_velocity(player, playerPos, playerReqMagStrength, global.delta)
 
 func set_mag_target(playerPos,playerReqOrbitStability):
 	
@@ -76,10 +76,10 @@ func set_mag_target(playerPos,playerReqOrbitStability):
 	targetPos = orbitPos+(playerReqOrbitStability * targetVector * orbit.get_node("CollisionShape2D").shape.radius) # // coefficient of 0 for weak, 1 for strong
 	targetPoint.set_global_position(targetPos)
 
-func add_mag_velocity(player, playerPos, playerReqMagStrength):
+func add_mag_velocity(player, playerPos, playerReqMagStrength, delta):
 	var magVelocityFinal = mag_velocity_lo_calc(player,playerPos).lerp(mag_velocity_hi_calc(player,playerPos),playerReqMagStrength)
 	oldLookAtRotation = orbitCenter.rotation
-	player.velocity += magVelocityFinal
+	player.velocity += magVelocityFinal * delta
 
 func mag_velocity_lo_calc(player, playerPos):
 	var magVector = playerPos.direction_to(targetPos)

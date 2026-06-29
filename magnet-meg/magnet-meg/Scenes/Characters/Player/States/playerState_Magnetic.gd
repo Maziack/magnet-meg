@@ -3,6 +3,7 @@ extends PlayerState
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	#player.animation_player.play("magnetic")
 	#print(owner.name," is ", name)
+	player.can_jump = false
 	player.is_magnetic = 1
 	mag_curve_update(0)
 

@@ -163,13 +163,7 @@ height = 45.0
 [node name="Player" type="CharacterBody2D" unique_id=980870281]
 safe_margin = 0.01
 script = ExtResource("1_k5iak")
-jump_velocity = -350.0
-run_accel_speed = 3600.0
-run_decel_speed = 2700.0
-air_accel_speed = 1200.0
-air_decel_speed = 120.0
-top_input_speed = 500.0
-max_velocity = 2000.0
+air_accel_speed = 30.0
 magStrengthCurve = SubResource("Curve_8gg06")
 magOrbitCurve = SubResource("Curve_cscr0")
 
@@ -206,6 +200,9 @@ script = ExtResource("6_utp2y")
 [node name="Falling" type="Node" parent="MoveStateMachine" unique_id=1519761606]
 script = ExtResource("7_gdgf0")
 
+[node name="CoyoteTimer" type="Timer" parent="MoveStateMachine/Falling" unique_id=1136443765]
+one_shot = true
+
 [node name="MagStateMachine" parent="." unique_id=492535421 instance=ExtResource("3_xo8ps")]
 
 [node name="Normal" type="Node" parent="MagStateMachine" unique_id=1223523877]
@@ -230,3 +227,5 @@ editor_draw_drag_margin = true
 [node name="CameraTransform" type="RemoteTransform2D" parent="Camera2D" unique_id=7213887]
 visible = false
 remote_path = NodePath("..")
+
+[connection signal="timeout" from="MoveStateMachine/Falling/CoyoteTimer" to="MoveStateMachine/Falling" method="_on_coyote_timer_timeout"]

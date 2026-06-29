@@ -3,16 +3,18 @@ class_name Player
 
 @export_subgroup("Physics Properties")
 @export var mass:float = 60
-@export var gravity:float = 1000
+@export var gravity:float = 16.5
+@export var coyote_time:float = 0.25
 
 @export_subgroup("Velocity Settings")
-@export var jump_velocity:float# = -400
-@export var run_accel_speed:float# = 60
-@export var run_decel_speed:float# = 45
-@export var air_accel_speed:float# = 20
-@export var air_decel_speed:float# = 2
-@export var top_input_speed:float# = 475
-@export_range(0,2500, 25) var max_velocity:float# = 2000 #change this for underwater type magnetic movement?
+@export var jump_velocity:float = -400
+@export var run_accel_speed:float = 60
+@export var run_decel_speed:float = 40
+@export var air_accel_speed:float = 20
+@export var air_decel_speed:float = 2
+@export var top_input_speed:float = 500
+@export_range(0,2500, 25) var max_velocity:float = 2000 #change this for underwater type magnetic movement?
+var can_jump:bool = true
 
 @export_subgroup("Magnet Settings")
 @export_range(0.01, 0.1, 0.01) var fluxDensityLo:float = 0.02 # In Tesla
@@ -21,11 +23,11 @@ class_name Player
 @export_range(200, 500, 25) var maxAccelerationHi:float = 250
 @export var magStrengthCurve: Curve
 @export var magOrbitCurve: Curve
-var is_magnetic
-var reqMagStrength
-var reqOrbitStability
-var fluxDensity = {"Lo":fluxDensityLo, "Hi":fluxDensityHi}
-var maxAcceleration = {"Lo":maxAccelerationLo, "Hi":maxAccelerationHi}
+var is_magnetic:float
+var reqMagStrength:float
+var reqOrbitStability:float
+var fluxDensity:Dictionary = {"Lo":fluxDensityLo, "Hi":fluxDensityHi}
+var maxAcceleration:Dictionary = {"Lo":maxAccelerationLo, "Hi":maxAccelerationHi}
 
 
 #var magVelocity:Vector2
