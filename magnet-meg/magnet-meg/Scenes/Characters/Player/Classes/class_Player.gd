@@ -3,7 +3,7 @@ class_name Player
 
 @export_subgroup("Physics Properties")
 @export var mass:float = 60
-@export var gravity:float = 16.5
+@export var gravity:float = 18
 @export var coyote_time:float = 0.25
 
 @export_subgroup("Velocity Settings")
@@ -14,7 +14,6 @@ class_name Player
 @export var air_decel_speed:float = 2
 @export var top_input_speed:float = 500
 @export_range(0,2500, 25) var max_velocity:float = 2000 #change this for underwater type magnetic movement?
-var can_jump:bool = true
 
 @export_subgroup("Magnet Settings")
 @export_range(0.01, 0.1, 0.01) var fluxDensityLo:float = 0.02 # In Tesla
@@ -23,6 +22,8 @@ var can_jump:bool = true
 @export_range(200, 500, 25) var maxAccelerationHi:float = 250
 @export var magStrengthCurve: Curve
 @export var magOrbitCurve: Curve
+
+var can_jump:bool = true
 var is_magnetic:float
 var reqMagStrength:float
 var reqOrbitStability:float
