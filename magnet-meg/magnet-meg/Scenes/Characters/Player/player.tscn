@@ -163,6 +163,8 @@ height = 45.0
 [node name="Player" type="CharacterBody2D" unique_id=980870281]
 safe_margin = 0.01
 script = ExtResource("1_k5iak")
+coyote_time = 0.15
+input_buffer = 0.15
 air_accel_speed = 30.0
 magStrengthCurve = SubResource("Curve_8gg06")
 magOrbitCurve = SubResource("Curve_cscr0")
@@ -197,10 +199,17 @@ script = ExtResource("5_khnq4")
 [node name="Jumping" type="Node" parent="MoveStateMachine" unique_id=1282354793]
 script = ExtResource("6_utp2y")
 
-[node name="Falling" type="Node" parent="MoveStateMachine" unique_id=1519761606]
+[node name="Falling" type="Node" parent="MoveStateMachine" unique_id=1519761606 node_paths=PackedStringArray("coyote_timer", "input_buffer")]
 script = ExtResource("7_gdgf0")
+coyote_timer = NodePath("CoyoteTimer")
+input_buffer = NodePath("InputBufferTimer")
 
 [node name="CoyoteTimer" type="Timer" parent="MoveStateMachine/Falling" unique_id=1136443765]
+process_callback = 0
+one_shot = true
+
+[node name="InputBufferTimer" type="Timer" parent="MoveStateMachine/Falling" unique_id=1103634730]
+process_callback = 0
 one_shot = true
 
 [node name="MagStateMachine" parent="." unique_id=492535421 instance=ExtResource("3_xo8ps")]

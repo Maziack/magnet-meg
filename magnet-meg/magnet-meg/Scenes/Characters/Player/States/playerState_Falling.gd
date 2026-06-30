@@ -1,17 +1,19 @@
 extends PlayerState
 
+@export var coyote_timer: Timer
+@export var input_buffer: Timer
+
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	if player.can_jump:
-		$CoyoteTimer.wait_time = player.coyote_time
-		$CoyoteTimer.start()
-		#print("Coyote Timer Start")
+		coyote_timer.wait_time = player.coyote_time
+		coyote_timer.start()
+	input_buffer.wait_time = player.input_buffer
 	$"../../AnimatedSprite2D".set_frame_and_progress(6,0)
 	$"../../AnimatedSprite2D".pause()
-	#print(owner.name," is ", name)
+	print(owner.name," is ", name)
 	
 func _on_coyote_timer_timeout() -> void:
 	player.can_jump = false
-	#print("Coyote Timer Timeout")
 	
 func physics_update(_delta: float) -> void:
 	player.velocity.y += player.gravity * global.delta
@@ -28,12 +30,29 @@ func physics_update(_delta: float) -> void:
 	$"../../AnimatedSprite2D".set_frame_and_progress(6,0)
 	$"../../AnimatedSprite2D".pause()
 	
-	if player.is_on_floor():
-		$CoyoteTimer.stop()
-		if is_equal_approx(player.velocity.x, 0.0):
-			finished.emit(IDLE)
-		else:
-			finished.emit(RUNNING)
-	elif player.can_jump and Input.is_action_just_pressed("jump"):
-		$CoyoteTimer.stop()
+	
+
+			
+	if player.can_jump and Input.is_action_just_pressed("jump"):
+		coyote_timer.stop()
 		finished.emit(JUMPING)
+		
+	elif not player.can_jump and Input.is_action_just_pressed("jump"):
+		input_buffer.start()
+		
+	elif player.is_on_floor():
+		if input_buffer.time_left:
+			input_buffer.stop()
+			data.queued_action = JUMPING
+			if is_equal_approx(player.velocity.x, 0.0):
+				finished.emit(IDLE, data)
+				data.clear()
+			else:
+				finished.emit(RUNNING, data)
+				data.clear()
+		else:
+			coyote_timer.stop()
+			if is_equal_approx(player.velocity.x, 0.0):
+				finished.emit(IDLE)
+			else:
+				finished.emit(RUNNING)

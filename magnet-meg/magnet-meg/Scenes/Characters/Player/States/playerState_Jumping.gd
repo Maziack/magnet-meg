@@ -5,7 +5,7 @@ func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	player.can_jump = false
 	$"../../AnimatedSprite2D".set_frame_and_progress(7,0)
 	$"../../AnimatedSprite2D".pause()
-	#print(owner.name," is ", name)
+	print(owner.name," is ", name)
 
 func physics_update(_delta: float) -> void:
 	player.velocity.y += player.gravity * global.delta

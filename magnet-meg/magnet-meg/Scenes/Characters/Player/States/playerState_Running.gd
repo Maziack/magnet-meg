@@ -1,9 +1,11 @@
 extends PlayerState
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	player.can_jump = true
-	#print(owner.name," is ", name)
-	pass
+	if _data:
+		finished.emit(_data.queued_action)
+	else:
+		player.can_jump = true
+	print(owner.name," is ", name)
 
 func physics_update(_delta: float) -> void:
 	var direction_x := int(Input.get_axis("move_left","move_right"))
