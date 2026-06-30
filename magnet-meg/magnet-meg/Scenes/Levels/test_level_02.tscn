@@ -165,7 +165,6 @@ texture = ExtResource("7_r5wsy")
 [node name="Player" parent="Level" unique_id=897535461 instance=ExtResource("3_fvojj")]
 unique_name_in_owner = true
 position = Vector2(25, 601)
-max_velocity = 1200.0
 metadata/_edit_group_ = true
 
 [node name="CoyoteTimer" parent="Level/Player/MoveStateMachine/Falling" parent_id_path=PackedInt32Array(897535461, 1519761606) index="0" unique_id=1136443765]

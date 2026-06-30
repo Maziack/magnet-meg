@@ -4,7 +4,7 @@ class_name Player
 @export_subgroup("Physics Properties")
 @export var mass:float = 60
 @export var gravity:float = 18
-@export var coyote_time:float = 0.25
+@export var coyote_time:float = 0.2
 
 @export_subgroup("Velocity Settings")
 @export var jump_velocity:float = -400

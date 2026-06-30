@@ -1,8 +1,6 @@
 extends PlayerState
 
-
-
-func enter(previous_state_path: String = "", _data: Dictionary = {}) -> void:
+func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	if player.can_jump:
 		$CoyoteTimer.wait_time = player.coyote_time
 		$CoyoteTimer.start()
