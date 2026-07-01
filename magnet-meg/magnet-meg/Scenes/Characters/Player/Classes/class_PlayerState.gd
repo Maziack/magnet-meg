@@ -5,11 +5,13 @@ const IDLE = "Idle"
 const RUNNING = "Running"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
+const WALLPRESS = "WallPress"
+
 const NORMAL = "Normal"
 const MAGNETIC = "Magnetic"
 
 var player: Player
-var animation: Dictionary = {"-1":"move_left", "1":"move_right"}
+var animation: Dictionary = {"-1":"_left", "1":"_right"}
 
 
 func _ready() -> void:

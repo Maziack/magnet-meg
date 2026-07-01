@@ -15,7 +15,7 @@ func physics_update(_delta: float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*global.delta)
 	
 	if direction_x != 0:
-		$"../../AnimatedSprite2D".play(animation[str(direction_x)])
+		$"../../AnimatedSprite2D".play("move" + animation[str(direction_x)])
 	else: $"../../AnimatedSprite2D".stop()
 	
 	if not player.is_on_floor():

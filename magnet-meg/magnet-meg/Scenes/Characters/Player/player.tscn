@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://rpdbagspit31" path="res://Scenes/Characters/Player/States/playerState_Running.gd" id="5_khnq4"]
 [ext_resource type="Script" uid="uid://5klyw3vyaeyh" path="res://Scenes/Characters/Player/States/playerState_Jumping.gd" id="6_utp2y"]
 [ext_resource type="Script" uid="uid://3cj3vlpqcwvi" path="res://Scenes/Characters/Player/States/playerState_Falling.gd" id="7_gdgf0"]
+[ext_resource type="Script" uid="uid://dr4ri0w7rxgck" path="res://Scenes/Characters/Player/States/playerState_WallPress.gd" id="8_cscr0"]
 [ext_resource type="Script" uid="uid://gyex5jh2l552" path="res://Scenes/Characters/Player/States/playerState_Normal.gd" id="8_gdgf0"]
 [ext_resource type="Script" uid="uid://gwnfe01g5opc" path="res://Scenes/Characters/Player/States/playerState_Magnetic.gd" id="9_8gg06"]
 
@@ -161,6 +162,7 @@ animations = [{
 height = 45.0
 
 [node name="Player" type="CharacterBody2D" unique_id=980870281]
+floor_block_on_wall = false
 safe_margin = 0.01
 script = ExtResource("1_k5iak")
 coyote_time = 0.15
@@ -196,8 +198,13 @@ script = ExtResource("4_gy20a")
 [node name="Running" type="Node" parent="MoveStateMachine" unique_id=1858206668]
 script = ExtResource("5_khnq4")
 
-[node name="Jumping" type="Node" parent="MoveStateMachine" unique_id=1282354793]
+[node name="Jumping" type="Node" parent="MoveStateMachine" unique_id=1282354793 node_paths=PackedStringArray("input_buffer")]
 script = ExtResource("6_utp2y")
+input_buffer = NodePath("InputBufferTimer")
+
+[node name="InputBufferTimer" type="Timer" parent="MoveStateMachine/Jumping" unique_id=1835759421]
+process_callback = 0
+one_shot = true
 
 [node name="Falling" type="Node" parent="MoveStateMachine" unique_id=1519761606 node_paths=PackedStringArray("coyote_timer", "input_buffer")]
 script = ExtResource("7_gdgf0")
@@ -212,6 +219,14 @@ one_shot = true
 process_callback = 0
 one_shot = true
 
+[node name="WallPress" type="Node" parent="MoveStateMachine" unique_id=1270935839 node_paths=PackedStringArray("input_buffer")]
+script = ExtResource("8_cscr0")
+input_buffer = NodePath("InputBufferTimer")
+
+[node name="InputBufferTimer" type="Timer" parent="MoveStateMachine/WallPress" unique_id=386081210]
+process_callback = 0
+one_shot = true
+
 [node name="MagStateMachine" parent="." unique_id=492535421 instance=ExtResource("3_xo8ps")]
 
 [node name="Normal" type="Node" parent="MagStateMachine" unique_id=1223523877]
@@ -223,6 +238,7 @@ script = ExtResource("9_8gg06")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913601158]
 ignore_rotation = false
 zoom = Vector2(0.75, 0.75)
+limit_enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 drag_horizontal_enabled = true
