@@ -5,7 +5,7 @@ const IDLE = "Idle"
 const RUNNING = "Running"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
-const WALLPRESS = "WallPress"
+const WALLPRESSING = "WallPressing"
 
 const NORMAL = "Normal"
 const MAGNETIC = "Magnetic"

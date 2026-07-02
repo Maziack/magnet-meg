@@ -165,9 +165,6 @@ height = 45.0
 floor_block_on_wall = false
 safe_margin = 0.01
 script = ExtResource("1_k5iak")
-coyote_time = 0.15
-input_buffer = 0.15
-air_accel_speed = 30.0
 magStrengthCurve = SubResource("Curve_8gg06")
 magOrbitCurve = SubResource("Curve_cscr0")
 
@@ -219,11 +216,11 @@ one_shot = true
 process_callback = 0
 one_shot = true
 
-[node name="WallPress" type="Node" parent="MoveStateMachine" unique_id=1270935839 node_paths=PackedStringArray("input_buffer")]
+[node name="WallPressing" type="Node" parent="MoveStateMachine" unique_id=1270935839 node_paths=PackedStringArray("slide_timer")]
 script = ExtResource("8_cscr0")
-input_buffer = NodePath("InputBufferTimer")
+slide_timer = NodePath("SlideTimer")
 
-[node name="InputBufferTimer" type="Timer" parent="MoveStateMachine/WallPress" unique_id=386081210]
+[node name="SlideTimer" type="Timer" parent="MoveStateMachine/WallPressing" unique_id=386081210]
 process_callback = 0
 one_shot = true
 
@@ -238,7 +235,6 @@ script = ExtResource("9_8gg06")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1913601158]
 ignore_rotation = false
 zoom = Vector2(0.75, 0.75)
-limit_enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 drag_horizontal_enabled = true
@@ -254,3 +250,4 @@ visible = false
 remote_path = NodePath("..")
 
 [connection signal="timeout" from="MoveStateMachine/Falling/CoyoteTimer" to="MoveStateMachine/Falling" method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="MoveStateMachine/WallPressing/SlideTimer" to="MoveStateMachine/WallPressing" method="_on_slide_timer_timeout"]

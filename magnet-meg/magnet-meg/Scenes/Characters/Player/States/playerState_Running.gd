@@ -18,9 +18,7 @@ func physics_update(_delta: float) -> void:
 		$"../../AnimatedSprite2D".play("move" + animation[str(direction_x)])
 	else: $"../../AnimatedSprite2D".stop()
 	
-	if not player.is_on_floor():
-		finished.emit(FALLING)
-	elif player.can_jump and Input.is_action_just_pressed("jump"):
-		finished.emit(JUMPING)
-	elif is_equal_approx(player.velocity.x, 0.0):
-		finished.emit(IDLE)
+	if player.is_on_wall() and (-1 * player.get_wall_normal().x) == direction_x: finished.emit(WALLPRESSING)
+	elif not player.is_on_floor(): finished.emit(FALLING)
+	elif player.can_jump and Input.is_action_just_pressed("jump"): finished.emit(JUMPING)
+	elif is_equal_approx(player.velocity.x, 0.0): finished.emit(IDLE)
