@@ -1,6 +1,8 @@
 extends PlayerState
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
+	player.wall_jump_count = 0
+	print("Wall Jump Combo Reset: ", self.name)
 	if _data:
 		finished.emit(_data.queued_action)
 	else:

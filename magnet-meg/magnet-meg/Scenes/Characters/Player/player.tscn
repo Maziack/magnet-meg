@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://chi0hp6wl3wq"]
 
-[ext_resource type="Script" uid="uid://6hkwlvrqbj6r" path="res://Scenes/Characters/Player/player.gd" id="1_k5iak"]
+[ext_resource type="Script" uid="uid://bcqcqg3k7onxj" path="res://Scenes/Characters/Player/Classes/class_Player.gd" id="1_sdxbo"]
 [ext_resource type="Texture2D" uid="uid://cnc4ibu14a6if" path="res://Assets/art_placeholder/sprite/main_spritemap.png" id="2_e0stw"]
+[ext_resource type="Curve" uid="uid://ojh73y5d63qy" path="res://Scenes/Characters/Player/Classes/curve_MagStrength.tres" id="2_p06rw"]
+[ext_resource type="Curve" uid="uid://2a2hqgaol8os" path="res://Scenes/Characters/Player/Classes/curve_MagOrbit.tres" id="3_aencf"]
 [ext_resource type="PackedScene" uid="uid://cpcawmi7dl32t" path="res://Scenes/Components/State Machines/stateMachine.tscn" id="3_xo8ps"]
 [ext_resource type="Script" uid="uid://jpxp61sxygcp" path="res://Scenes/Characters/Player/States/playerState_Idle.gd" id="4_gy20a"]
 [ext_resource type="Script" uid="uid://rpdbagspit31" path="res://Scenes/Characters/Player/States/playerState_Running.gd" id="5_khnq4"]
@@ -10,14 +12,6 @@
 [ext_resource type="Script" uid="uid://dr4ri0w7rxgck" path="res://Scenes/Characters/Player/States/playerState_WallPress.gd" id="8_cscr0"]
 [ext_resource type="Script" uid="uid://gyex5jh2l552" path="res://Scenes/Characters/Player/States/playerState_Normal.gd" id="8_gdgf0"]
 [ext_resource type="Script" uid="uid://gwnfe01g5opc" path="res://Scenes/Characters/Player/States/playerState_Magnetic.gd" id="9_8gg06"]
-
-[sub_resource type="Curve" id="Curve_8gg06"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.56305, 0.028533697), 0.0, 0.0, 0, 0, Vector2(0.83675474, 0.08161926), 0.31945086, 0.31945086, 0, 0, Vector2(0.9345064, 0.18779051), 2.468482, 2.468482, 0, 0, Vector2(1, 1), 5.3119535, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_cscr0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.9, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 4.56333, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gg06"]
 atlas = ExtResource("2_e0stw")
@@ -161,12 +155,14 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gg06"]
 height = 45.0
 
-[node name="Player" type="CharacterBody2D" unique_id=980870281]
+[node name="Player" type="CharacterBody2D" unique_id=980870281 node_paths=PackedStringArray("wall_detect_left", "wall_detect_right")]
 floor_block_on_wall = false
 safe_margin = 0.01
-script = ExtResource("1_k5iak")
-magStrengthCurve = SubResource("Curve_8gg06")
-magOrbitCurve = SubResource("Curve_cscr0")
+script = ExtResource("1_sdxbo")
+wall_detect_left = NodePath("WallDetectLeft")
+wall_detect_right = NodePath("WallDetectRight")
+magStrengthCurve = ExtResource("2_p06rw")
+magOrbitCurve = ExtResource("3_aencf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=103448341]
 position = Vector2(-32, -42)
@@ -251,11 +247,11 @@ remote_path = NodePath("..")
 
 [node name="WallDetectLeft" type="RayCast2D" parent="." unique_id=415671984]
 position = Vector2(0, 13)
-target_position = Vector2(-12, 0)
+target_position = Vector2(-10.5, 0)
 
 [node name="WallDetectRight" type="RayCast2D" parent="." unique_id=122100862]
 position = Vector2(0, 13)
-target_position = Vector2(12, 0)
+target_position = Vector2(10.5, 0)
 
 [connection signal="timeout" from="MoveStateMachine/Falling/CoyoteTimer" to="MoveStateMachine/Falling" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="MoveStateMachine/WallPressing/SlideTimer" to="MoveStateMachine/WallPressing" method="_on_slide_timer_timeout"]

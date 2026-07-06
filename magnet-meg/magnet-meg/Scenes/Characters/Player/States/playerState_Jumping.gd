@@ -4,6 +4,8 @@ extends PlayerState
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 	if _previous_state_path == WALLPRESSING:
+		player.wall_jump_count = player.wall_jump_count + 1
+		print("Wall Jump Combo: ", player.wall_jump_count)
 		player.velocity.y = player.jump_velocity * 1.2
 		player.velocity.x = player.wall_jump_pushback * player.get_wall_normal().x
 		$"../../AnimatedSprite2D".play("move" + animation[str(sign(int(player.velocity.x)))])
@@ -21,7 +23,8 @@ func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 func physics_update(_delta: float) -> void:
 	player.velocity.y += player.gravity * global.delta
 	
-	var direction_x = int(Input.get_axis("move_left","move_right"))
+	var direction_x = 0
+	direction_x = int(Input.get_axis("move_left","move_right"))
 	var velocity_delta:float = player.air_accel_speed if direction_x != 0 else player.air_decel_speed
 	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (player.air_decel_speed * global.delta)
 	
@@ -39,11 +42,12 @@ func physics_update(_delta: float) -> void:
 	elif player.velocity.y >= 0:
 		finished.emit(FALLING)
 	
-	if player.is_on_wall() and (-1 * player.get_wall_normal().x) == direction_x:
-		if input_buffer.time_left:
-			input_buffer.stop()
-			data.queued_action = JUMPING
-			finished.emit(WALLPRESSING, data)
-			data.clear()
-		else:
-			finished.emit(WALLPRESSING)
+	if player.wall_detect_left.is_colliding() or player.wall_detect_right.is_colliding(): 
+		if (-1 * player.wall_detect_left.get_collision_normal().x) == direction_x or (-1 * player.wall_detect_right.get_collision_normal().x) == direction_x:
+			if input_buffer.time_left:
+				input_buffer.stop()
+				data.queued_action = JUMPING
+				finished.emit(WALLPRESSING, data)
+				data.clear()
+			else:
+				finished.emit(WALLPRESSING)

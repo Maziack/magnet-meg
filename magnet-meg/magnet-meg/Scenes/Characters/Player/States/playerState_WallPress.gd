@@ -4,9 +4,12 @@ extends PlayerState
 var slide_timer_finished: bool
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
+	if player.wall_jump_count >= player.wall_jump_max:
+		player.can_jump = false
 	if _data:
-		finished.emit(_data.queued_action)
+		print("WallPress Enter Queued Action: ", _data.queued_action)
 		print("Queued Wall Jump") #Keep input queing from fast falls? Decide after testing as this will negate downward momentum
+		finished.emit(_data.queued_action)
 	else:
 		player.can_jump = true
 		slide_timer.wait_time = player.wall_slide_time
@@ -18,7 +21,7 @@ func _on_slide_timer_timeout() -> void:
 
 func physics_update(_delta: float) -> void:
 	var direction_x = int(Input.get_axis("move_left","move_right"))
-	var wall_press = -1 * player.get_wall_normal().x == direction_x
+	var wall_press:bool = (player.wall_detect_left.is_colliding() or player.wall_detect_right.is_colliding()) and (((-1 * player.wall_detect_left.get_collision_normal().x) == direction_x) or ((-1 * player.wall_detect_right.get_collision_normal().x) == direction_x))
 	var velocity_delta:float = player.air_accel_speed if direction_x != 0 else player.air_decel_speed
 	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (player.air_decel_speed * global.delta)
 	
@@ -40,14 +43,10 @@ func physics_update(_delta: float) -> void:
 		slide_timer.stop()
 		finished.emit(JUMPING)
 		
-	elif player.is_on_floor() and not wall_press:
-		slide_timer.stop()
-		finished.emit(IDLE)
-		
-	elif player.is_on_floor() and not player.is_on_wall():
-		slide_timer.stop()
-		finished.emit(RUNNING)
-			
-	elif not player.is_on_floor() and not player.is_on_wall() and (direction_x == 0 or player.velocity.x !=0):
-		slide_timer.stop()
-		finished.emit(FALLING)
+	elif not wall_press:
+		if player.is_on_floor():
+			slide_timer.stop()
+			finished.emit(IDLE)
+		else:
+			slide_timer.stop()
+			finished.emit(FALLING)
