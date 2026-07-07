@@ -3,14 +3,16 @@ extends PlayerState
 @export var coyote_timer: Timer
 @export var input_buffer: Timer
 
-func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	if player.can_jump:
+func enter(previous_state_path: String = "", _data: Dictionary = {}) -> void:
+	print(owner.name," is ", name)
+	if previous_state_path == RUNNING:
+		player.can_jump = true
 		coyote_timer.wait_time = player.coyote_time
 		coyote_timer.start()
+	else: player.can_jump = false
 	input_buffer.wait_time = player.input_buffer
 	$"../../AnimatedSprite2D".set_frame_and_progress(6,0)
 	$"../../AnimatedSprite2D".pause()
-	print(owner.name," is ", name)
 	
 func _on_coyote_timer_timeout() -> void:
 	player.can_jump = false
@@ -28,6 +30,10 @@ func physics_update(_delta: float) -> void:
 	
 	if direction_x != 0:
 		$"../../AnimatedSprite2D".play("move" + animation[str(sign(int(direction_x)))])
+	elif player.velocity.x > 0:
+		$"../../AnimatedSprite2D".play("move_right")
+	elif player.velocity.x < 0:
+		$"../../AnimatedSprite2D".play("move_left")
 	$"../../AnimatedSprite2D".set_frame_and_progress(6,0)
 	$"../../AnimatedSprite2D".pause()
 	
@@ -42,16 +48,18 @@ func physics_update(_delta: float) -> void:
 		
 	elif direction_x != 0 and (player.wall_detect_left.is_colliding() or player.wall_detect_right.is_colliding()): 
 		if (-1 * player.wall_detect_left.get_collision_normal().x) == direction_x or (-1 * player.wall_detect_right.get_collision_normal().x) == direction_x:
-			if input_buffer.time_left:
+			if not input_buffer.is_stopped():
 				input_buffer.stop()
 				data.queued_action = JUMPING
+				#print("Fall State Exit to Wall Jump")
 				finished.emit(WALLPRESSING, data)
 				data.clear()
 			else:
+				#print("Fall State Exit to Wall Press")
 				finished.emit(WALLPRESSING)
 		
 	elif player.is_on_floor():
-		if input_buffer.time_left:
+		if not input_buffer.is_stopped():
 			input_buffer.stop()
 			data.queued_action = JUMPING
 			if is_equal_approx(player.velocity.x, 0.0):

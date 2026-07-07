@@ -6,7 +6,7 @@ class_name Player
 @export var gravity:float = 18 #?
 @export var wall_slide_gravity:float = 2 #?
 @export var wall_slide_time:float = 1.5 #sec
-@export var wall_jump_max:int = 3
+@export var wall_jump_max = 3 #jumps #0 = infinite jumps
 @export var wall_detect_left: RayCast2D
 @export var wall_detect_right: RayCast2D
 @export var coyote_time:float = 0.12 #sec

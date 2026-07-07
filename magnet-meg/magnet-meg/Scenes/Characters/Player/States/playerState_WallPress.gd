@@ -4,17 +4,19 @@ extends PlayerState
 var slide_timer_finished: bool
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	if player.wall_jump_count >= player.wall_jump_max:
+	print(owner.name," is ", name, " after ", _previous_state_path)
+	
+	if (player.wall_jump_max != 0) and (player.wall_jump_count >= player.wall_jump_max):
 		player.can_jump = false
-	if _data:
-		print("WallPress Enter Queued Action: ", _data.queued_action)
-		print("Queued Wall Jump") #Keep input queing from fast falls? Decide after testing as this will negate downward momentum
-		finished.emit(_data.queued_action)
+	elif _data:
+		#print("WallPress State Enter: Queued Wall Jump")
+		finished.emit(_data.queued_action)	#Keep input queing from fast falls? Decide after testing as this will negate downward momentum
 	else:
 		player.can_jump = true
+		#print("WallPress State Enter: Wall Press and Can Jump")
 		slide_timer.wait_time = player.wall_slide_time
 		slide_timer_finished = false
-	print(owner.name," is ", name)
+	
 	
 func _on_slide_timer_timeout() -> void:
 	slide_timer_finished = true
@@ -41,12 +43,15 @@ func physics_update(_delta: float) -> void:
 	
 	if player.can_jump and Input.is_action_just_pressed("jump"):
 		slide_timer.stop()
+		#print("WallPress State Exit to Jump")
 		finished.emit(JUMPING)
 		
-	elif not wall_press:
-		if player.is_on_floor():
-			slide_timer.stop()
+	elif player.is_on_floor():
+		slide_timer.stop()
+		player.can_jump = true
+		if not wall_press:
 			finished.emit(IDLE)
-		else:
-			slide_timer.stop()
-			finished.emit(FALLING)
+	elif not wall_press:
+		slide_timer.stop()
+		#print("WallPress State Exit to Fall")
+		finished.emit(FALLING)

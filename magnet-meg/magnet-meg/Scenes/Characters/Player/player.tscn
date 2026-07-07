@@ -157,8 +157,8 @@ height = 45.0
 
 [node name="Player" type="CharacterBody2D" unique_id=980870281 node_paths=PackedStringArray("wall_detect_left", "wall_detect_right")]
 floor_block_on_wall = false
-safe_margin = 0.01
 script = ExtResource("1_sdxbo")
+wall_jump_max = 0
 wall_detect_left = NodePath("WallDetectLeft")
 wall_detect_right = NodePath("WallDetectRight")
 magStrengthCurve = ExtResource("2_p06rw")
