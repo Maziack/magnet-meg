@@ -191,11 +191,16 @@ script = ExtResource("4_gy20a")
 [node name="Running" type="Node" parent="MoveStateMachine" unique_id=1858206668]
 script = ExtResource("5_khnq4")
 
-[node name="Jumping" type="Node" parent="MoveStateMachine" unique_id=1282354793 node_paths=PackedStringArray("input_buffer")]
+[node name="Jumping" type="Node" parent="MoveStateMachine" unique_id=1282354793 node_paths=PackedStringArray("input_buffer", "wall_jump_cooldown")]
 script = ExtResource("6_utp2y")
 input_buffer = NodePath("InputBufferTimer")
+wall_jump_cooldown = NodePath("WallJumpCooldownTimer")
 
 [node name="InputBufferTimer" type="Timer" parent="MoveStateMachine/Jumping" unique_id=1835759421]
+process_callback = 0
+one_shot = true
+
+[node name="WallJumpCooldownTimer" type="Timer" parent="MoveStateMachine/Jumping" unique_id=1031444473]
 process_callback = 0
 one_shot = true
 

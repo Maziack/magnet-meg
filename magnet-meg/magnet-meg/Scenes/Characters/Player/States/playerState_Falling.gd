@@ -46,8 +46,7 @@ func physics_update(_delta: float) -> void:
 			finished.emit(JUMPING)
 		else: input_buffer.start()
 		
-	elif direction_x != 0 and (player.wall_detect_left.is_colliding() or player.wall_detect_right.is_colliding()): 
-		if (-1 * player.wall_detect_left.get_collision_normal().x) == direction_x or (-1 * player.wall_detect_right.get_collision_normal().x) == direction_x:
+	elif ((player.wall_jump_count > 0) or (direction_x != 0)) and (player.wall_detect_left.is_colliding() or player.wall_detect_right.is_colliding()): 
 			if not input_buffer.is_stopped():
 				input_buffer.stop()
 				data.queued_action = JUMPING
