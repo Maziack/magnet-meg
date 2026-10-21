@@ -1,12 +1,13 @@
 @tool
 extends Node2D
 
+var px_to_m = global.px_to_m
 @export_subgroup("Settings")
 @export var collisionShapeCurve:Curve
 @export_range(1,10,0.1) var orbitRadius:float:						#in meters	100pix = ~3m
 	set(Radius):
 		orbitRadius = Radius
-		var scaledRadius = Radius*global.px_to_m
+		var scaledRadius = Radius*px_to_m
 		var fieldOuterRadius = scaledRadius*10
 		var fieldInnerRadius = scaledRadius*7.5
 		var coreRadius = scaledRadius*0.25
@@ -43,8 +44,8 @@ var coreRadiusPx
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		coreRadiusPx = orbitRadius*global.px_to_m
-		#coreRadiusPx = coreRadius*global.px_to_m TRY REMOVING CONVERSION TO PX
+		coreRadiusPx = orbitRadius*px_to_m
+		#coreRadiusPx = coreRadius*px_to_m TRY REMOVING CONVERSION TO PX
 		orbitCenter = get_node("OrbitCenter")
 		orbit = get_node("Orbit")
 		fieldOuter = get_node("FieldOuter")
@@ -83,7 +84,7 @@ func add_mag_velocity(player, playerPos, playerReqMagStrength, delta):
 
 func mag_velocity_lo_calc(player, playerPos):
 	var magVector = playerPos.direction_to(targetPos)
-	var distance = orbitPos.distance_to(playerPos) / global.px_to_m	#distance in meters
+	var distance = orbitPos.distance_to(playerPos) / px_to_m	#distance in meters
 	var magStrength = player.fluxDensity["Lo"] * (1.33 * 3.14159 * (coreRadiusPx**3)) #field strength x volume of sphere
 	var magForce = magStrength / (distance*(0.5*fieldInner.shape.radius/coreRadiusPx))
 	#var magForce = magStrength / (distance**2) TRY CHANGING TO THIS ORIGINAL FORMULA
@@ -91,21 +92,21 @@ func mag_velocity_lo_calc(player, playerPos):
 	var magVelocityLo = (magVector * magAcceleration * player.is_magnetic).clamp(Vector2(-1*player.maxAcceleration["Lo"],-1*player.maxAcceleration["Lo"]),Vector2(player.maxAcceleration["Lo"],player.maxAcceleration["Lo"]))
 	### var orbitStability = Vector2.ZERO						### Future experiment: When traveling 
 	### newDistance = playerPos.distance_to(orbitPos)			### past orbitCenter reduce forward 
-	### if distance > (oldDistance / global.px_to_m):					### velocity and nudge into either CW  
+	### if distance > (oldDistance / px_to_m):					### velocity and nudge into either CW  
 	###		orbitStability = playerPos.direction_to(orbitPos)	### or CCW orbit direction, similar to
 	###															### apogee/perigee orbit stabilization
 	return magVelocityLo
 
 func mag_velocity_hi_calc(player, playerPos):
 	var magVector = playerPos.direction_to(targetPos)
-	var distance = orbitPos.distance_to(playerPos) / global.px_to_m	#distance in meters
+	var distance = orbitPos.distance_to(playerPos) / px_to_m	#distance in meters
 	var magStrength = player.fluxDensity["Hi"] * (1.33 * 3.14159 * (coreRadiusPx**3)) #field strength x volume of sphere
 	var magForce = magStrength / (distance*(0.5*fieldInner.shape.radius/coreRadiusPx))
 	var magAcceleration = magForce / player.mass
 	var magVelocityHi = (magVector * magAcceleration * player.is_magnetic).clamp(Vector2(-1*player.maxAcceleration["Hi"],-1*player.maxAcceleration["Hi"]),Vector2(player.maxAcceleration["Hi"],player.maxAcceleration["Hi"]))
 	### var orbitStability = Vector2.ZERO						### Future experiment: When traveling 
 	### newDistance = playerPos.distance_to(orbitPos)			### past orbitCenter reduce forward 
-	### if distance > (oldDistance / global.px_to_m):					### velocity and nudge into either CW  
+	### if distance > (oldDistance / px_to_m):					### velocity and nudge into either CW  
 	###		orbitStability = playerPos.direction_to(orbitPos)	### or CCW orbit direction, similar to
 	###															### apogee/perigee orbit stabilization
 	return magVelocityHi

@@ -979,7 +979,7 @@ metadata/_edit_group_ = true
 limit_bottom = 735
 
 [node name="Magnet" parent="Level" unique_id=426462504 instance=ExtResource("5_vtu5f")]
-position = Vector2(-192, 42)
+position = Vector2(-454, 60)
 orbitRadius = 2.5
 
 [node name="Magnet2" parent="Level" unique_id=1487369393 instance=ExtResource("5_vtu5f")]

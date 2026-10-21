@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+#FIX BUG WHERE PLAYER CANT JUMP AFTER BEING MAGNETIC THEN LANDING ON GROUND
+
 @export_subgroup("Physics and Timing")
 @export var mass:float = 60 #kg
 @export var gravity:float = 18 #?

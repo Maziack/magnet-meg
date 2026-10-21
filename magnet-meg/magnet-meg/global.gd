@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 var px_to_m: float = 30.48
