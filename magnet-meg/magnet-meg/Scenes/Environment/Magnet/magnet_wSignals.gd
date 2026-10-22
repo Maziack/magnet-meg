@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-
+##ADD SIGNALS EVENTUALLY##
 var px_to_m = global.px_to_m
 @export_subgroup("Settings")
 @export var collisionShapeCurve:Curve

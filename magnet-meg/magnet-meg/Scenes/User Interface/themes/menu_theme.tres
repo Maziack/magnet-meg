@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://c81e05m780750"]
+
+[ext_resource type="StyleBox" uid="uid://cov224vm3jy3e" path="res://Scenes/User Interface/themes/panel_container_style_box_flat.tres" id="1_3dm1o"]
+[ext_resource type="FontFile" uid="uid://dm5nptfj8p4vw" path="res://Scenes/User Interface/fonts/MayaCulpa-D1yR.ttf" id="2_gs3ju"]
+
+[resource]
+default_font = ExtResource("2_gs3ju")
+PanelContainer/styles/panel = ExtResource("1_3dm1o")
+RichTextLabel/colors/default_color = Color(0, 0.8025009, 0.8702186, 1)
+RichTextLabel/colors/font_outline_color = Color(0.88235295, 0.7529412, 0.14117648, 1)
+RichTextLabel/constants/outline_size = 10
+RichTextLabelTitle/base_type = &"RichTextLabel"
+RichTextLabelTitle/constants/outline_size = 65
+RichTextLabelTitle/font_sizes/normal_font_size = 110

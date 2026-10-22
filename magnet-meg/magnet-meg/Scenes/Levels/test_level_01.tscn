@@ -987,15 +987,15 @@ position = Vector2(-1577, 50)
 orbitRadius = 2.5
 
 [node name="Magnet3" parent="Level" unique_id=1615273721 instance=ExtResource("5_vtu5f")]
-position = Vector2(1187, 29)
+position = Vector2(675, 62)
 orbitRadius = 2.5
 
 [node name="Magnet4" parent="Level" unique_id=949326723 instance=ExtResource("5_vtu5f")]
-position = Vector2(-885, -944)
+position = Vector2(-707, -866)
 orbitRadius = 2.5
 
 [node name="Magnet5" parent="Level" unique_id=367542681 instance=ExtResource("5_vtu5f")]
-position = Vector2(439, -948)
+position = Vector2(895, -1070)
 orbitRadius = 2.5
 
 [editable path="Level/Player"]

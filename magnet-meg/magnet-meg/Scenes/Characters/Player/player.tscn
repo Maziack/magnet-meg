@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bcqcqg3k7onxj" path="res://Scenes/Characters/Player/Classes/class_Player.gd" id="1_sdxbo"]
 [ext_resource type="Texture2D" uid="uid://cnc4ibu14a6if" path="res://Assets/art_placeholder/sprite/main_spritemap.png" id="2_e0stw"]
-[ext_resource type="Curve" uid="uid://ojh73y5d63qy" path="res://Scenes/Characters/Player/Classes/curve_MagStrength.tres" id="2_p06rw"]
-[ext_resource type="Curve" uid="uid://2a2hqgaol8os" path="res://Scenes/Characters/Player/Classes/curve_MagOrbit.tres" id="3_aencf"]
+[ext_resource type="Curve" uid="uid://ojh73y5d63qy" path="res://Scenes/Characters/Player/Resources/curve_MagStrength.tres" id="2_p06rw"]
+[ext_resource type="Curve" uid="uid://2a2hqgaol8os" path="res://Scenes/Characters/Player/Resources/curve_MagOrbit.tres" id="3_aencf"]
 [ext_resource type="PackedScene" uid="uid://cpcawmi7dl32t" path="res://Scenes/Components/State Machines/stateMachine.tscn" id="3_xo8ps"]
 [ext_resource type="Script" uid="uid://jpxp61sxygcp" path="res://Scenes/Characters/Player/States/playerState_Idle.gd" id="4_gy20a"]
 [ext_resource type="Script" uid="uid://rpdbagspit31" path="res://Scenes/Characters/Player/States/playerState_Running.gd" id="5_khnq4"]
