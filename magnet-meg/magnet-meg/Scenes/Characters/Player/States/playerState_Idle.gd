@@ -13,7 +13,7 @@ func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 
 func physics_update(_delta: float) -> void:
 	var direction_x = int(Input.get_axis("move_left","move_right"))
-	player.velocity.y += player.gravity * global.delta
+	player.velocity.y += player.gravity * globalConst.delta
 	
 	
 	if not player.is_on_floor(): finished.emit(FALLING)

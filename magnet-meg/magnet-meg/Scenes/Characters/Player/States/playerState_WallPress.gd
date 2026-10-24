@@ -25,15 +25,15 @@ func physics_update(_delta: float) -> void:
 	var direction_x = int(Input.get_axis("move_left","move_right"))
 	var wall_press:bool = (player.wall_detect_left.is_colliding() or player.wall_detect_right.is_colliding()) and (((-1 * player.wall_detect_left.get_collision_normal().x) == direction_x) or ((-1 * player.wall_detect_right.get_collision_normal().x) == direction_x))
 	var velocity_delta:float = player.air_accel_speed if direction_x != 0 else player.air_decel_speed
-	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (player.air_decel_speed * global.delta)
+	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (player.air_decel_speed * globalConst.delta)
 	
-	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*global.delta)
+	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*globalConst.delta)
 	
 	if player.velocity.y < 0:
-		player.velocity.y += player.gravity * global.delta
+		player.velocity.y += player.gravity * globalConst.delta
 	else:
 		if slide_timer.is_stopped() and not slide_timer_finished: slide_timer.start()
-		player.velocity.y += lerp(player.wall_slide_gravity, player.gravity, (1-(slide_timer.time_left/slide_timer.wait_time))) * global.delta
+		player.velocity.y += lerp(player.wall_slide_gravity, player.gravity, (1-(slide_timer.time_left/slide_timer.wait_time))) * globalConst.delta
 	
 	if direction_x != 0:
 		$"../../AnimatedSprite2D".play("move" + animation[str(direction_x)])

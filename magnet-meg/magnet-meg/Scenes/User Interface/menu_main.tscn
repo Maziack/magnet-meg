@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://bnw38lniqiabm"]
+
+[ext_resource type="PackedScene" uid="uid://x88b3h6oswo" path="res://Scenes/User Interface/buttons/button.tscn" id="1_dgnbk"]
+[ext_resource type="Theme" uid="uid://c81e05m780750" path="res://Scenes/User Interface/themes/menu_theme.tres" id="1_v4jii"]
+[ext_resource type="Script" uid="uid://bu08a3da02vl8" path="res://Scenes/User Interface/menu_main.gd" id="2_537u5"]
+[ext_resource type="Script" uid="uid://dudp67xx5nu1n" path="res://Scenes/User Interface/buttons/button_quit.gd" id="3_smdll"]
+[ext_resource type="Script" uid="uid://hautk1aoo8cg" path="res://Scenes/User Interface/buttons/button_levelselect.gd" id="3_t8oy4"]
+[ext_resource type="Script" uid="uid://dc44523vvaksi" path="res://Scenes/User Interface/buttons/button_options.gd" id="3_xkyku"]
+
+[node name="Menu" type="Control" unique_id=812435869]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_v4jii")
+script = ExtResource("2_537u5")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1630233539]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1726678212]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=378319336]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"RichTextLabelTitle"
+bbcode_enabled = true
+text = "[wave amp=66 freq=1.5 connected=0
+]{MAGNET MEG}[/wave]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 161
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1508779408]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LevelSelectButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1379238236 instance=ExtResource("1_dgnbk")]
+layout_mode = 2
+text = "LEVEL SELECT"
+script = ExtResource("3_t8oy4")
+
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" unique_id=1520716989]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 335.0
+offset_top = -28.5
+offset_right = 340.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ButtonSubPanel"
+
+[node name="OptionsButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=307511856 instance=ExtResource("1_dgnbk")]
+layout_mode = 2
+text = "OPTIONS"
+script = ExtResource("3_xkyku")
+
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" unique_id=1526623189]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 225.0
+offset_top = -28.5
+offset_right = 230.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ButtonSubPanel"
+
+[node name="Panel2" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" unique_id=1514794772]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 355.0
+offset_top = -28.5
+offset_right = 360.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ButtonSubPanel"
+
+[node name="QuitButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=714184922 instance=ExtResource("1_dgnbk")]
+layout_mode = 2
+text = "QUIT"
+script = ExtResource("3_smdll")
+
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" unique_id=867735692]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_top = -28.5
+offset_right = 255.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ButtonSubPanel"
+
+[node name="Panel2" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" unique_id=2098754435]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 270.0
+offset_top = -28.5
+offset_right = 275.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ButtonSubPanel"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" to="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" method="_on_pressed"]
+[connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" to="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" method="_on_tree_exiting"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" method="_on_pressed"]
+[connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" method="_on_tree_exiting"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" to="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" method="_on_pressed"]

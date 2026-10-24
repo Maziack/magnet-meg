@@ -18,14 +18,14 @@ func _on_coyote_timer_timeout() -> void:
 	player.can_jump = false
 	
 func physics_update(_delta: float) -> void:
-	player.velocity.y += player.gravity * global.delta
+	player.velocity.y += player.gravity * globalConst.delta
 	
 	var direction_x = 0
 	direction_x = int(Input.get_axis("move_left","move_right"))
 	var velocity_delta:float = player.air_accel_speed if direction_x != 0 else player.air_decel_speed
-	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (player.air_decel_speed * global.delta)
+	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (player.air_decel_speed * globalConst.delta)
 	
-	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*global.delta)
+	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*globalConst.delta)
 	
 	
 	if direction_x != 0:

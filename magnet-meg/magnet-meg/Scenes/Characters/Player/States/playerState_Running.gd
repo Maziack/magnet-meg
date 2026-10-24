@@ -12,9 +12,9 @@ func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
 func physics_update(_delta: float) -> void:
 	var direction_x := int(Input.get_axis("move_left","move_right"))
 	var velocity_delta:float = player.run_accel_speed if direction_x != 0 else player.run_decel_speed
-	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (0.4 * player.run_decel_speed * global.delta)
+	var velocity_target:float = player.top_input_speed if player.top_input_speed > abs(player.velocity.x) else abs(player.velocity.x) - (0.4 * player.run_decel_speed * globalConst.delta)
 	
-	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*global.delta)
+	player.velocity.x = move_toward(player.velocity.x, velocity_target * direction_x, velocity_delta*globalConst.delta)
 	
 	if direction_x != 0:
 		$"../../AnimatedSprite2D".play("move" + animation[str(direction_x)])

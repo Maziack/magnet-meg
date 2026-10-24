@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 ##ADD SIGNALS EVENTUALLY##
-var px_to_m = global.px_to_m
+var px_to_m = globalConst.px_to_m
 @export_subgroup("Settings")
 @export var collisionShapeCurve:Curve
 @export_range(1,10,0.1) var orbitRadius:float:						#in meters	100pix = ~3m
@@ -62,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 				var playerReqOrbitStability = player.reqOrbitStability
 				var playerReqMagStrength = player.reqMagStrength
 				set_mag_target(playerPos, playerReqOrbitStability)
-				add_mag_velocity(player, playerPos, playerReqMagStrength, global.delta)
+				add_mag_velocity(player, playerPos, playerReqMagStrength, globalConst.delta)
 
 func set_mag_target(playerPos,playerReqOrbitStability):
 	
