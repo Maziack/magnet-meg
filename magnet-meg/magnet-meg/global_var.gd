@@ -1,4 +1,5 @@
 extends Node
 
-var previousScene
-var currentScene
+var previousScene: String
+var currentScene: String
+var playerRespawnPosition: Vector2

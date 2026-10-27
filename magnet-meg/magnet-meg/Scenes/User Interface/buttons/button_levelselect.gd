@@ -2,13 +2,13 @@ extends Button
 
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_level_01.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/test_level_03.tscn")
 
 
 func _on_tree_exiting() -> void:
 	globalVar.previousScene = get_tree().current_scene.scene_file_path
 	if get_viewport().gui_get_focus_owner() != null:
-		if get_viewport().gui_get_focus_owner().name == "LevelSelectButton":
+		if get_viewport().gui_get_focus_owner().name == "PlayButton":
 			print("Happy Playing!")
 
 

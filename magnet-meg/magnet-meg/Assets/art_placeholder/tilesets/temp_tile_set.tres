@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" format=3 uid="uid://bqgfdy36fo8wo"]
 
-[ext_resource type="Texture2D" uid="uid://bxrj4sidvxiia" path="res://Assets/art_placeholder/tiles/Magic Rock.png" id="1_qpi1o"]
-[ext_resource type="Texture2D" uid="uid://ctwsfadq52rkx" path="res://Assets/art_placeholder/tiles/Tileset_Test.png" id="2_kw53k"]
+[ext_resource type="Texture2D" uid="uid://bxrj4sidvxiia" path="res://Assets/art_placeholder/tilesets/Magic Rock.png" id="1_fkj8f"]
+[ext_resource type="Texture2D" uid="uid://ctwsfadq52rkx" path="res://Assets/art_placeholder/tilesets/Tileset_Test.png" id="2_jefpl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4n12y"]
-texture = ExtResource("1_qpi1o")
+texture = ExtResource("1_fkj8f")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -1182,7 +1182,7 @@ texture = ExtResource("1_qpi1o")
 41:17/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqrnd"]
-texture = ExtResource("2_kw53k")
+texture = ExtResource("2_jefpl")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

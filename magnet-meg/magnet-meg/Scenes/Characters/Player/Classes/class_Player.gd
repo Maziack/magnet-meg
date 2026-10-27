@@ -45,7 +45,7 @@ var maxAcceleration:Dictionary = {"Lo":maxAccelerationLo, "Hi":maxAccelerationHi
 #var magVelocity:Vector2
 
 func _ready() -> void:
-	pass
+	globalVar.playerRespawnPosition = global_position
 
 func _physics_process(_delta: float) -> void:
 	

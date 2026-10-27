@@ -51,12 +51,12 @@ custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LevelSelectButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1379238236 instance=ExtResource("1_dgnbk")]
+[node name="PlayButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1379238236 instance=ExtResource("1_dgnbk")]
 layout_mode = 2
-text = "LEVEL SELECT"
+text = "PLAY"
 script = ExtResource("3_t8oy4")
 
-[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" unique_id=1520716989]
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" unique_id=1520716989]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -141,8 +141,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"ButtonSubPanel"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" to="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" method="_on_pressed"]
-[connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" to="PanelContainer/VBoxContainer/VBoxContainer/LevelSelectButton" method="_on_tree_exiting"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" to="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" to="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" method="_on_tree_exiting"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" method="_on_pressed"]
 [connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" method="_on_tree_exiting"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" to="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" method="_on_pressed"]

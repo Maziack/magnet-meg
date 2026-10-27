@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://ck664gu32dpa0"]
 
 [ext_resource type="Script" uid="uid://cy8ppxcro6bmc" path="res://Scripts/game.gd" id="1_7hdpg"]
-[ext_resource type="TileSet" uid="uid://bqgfdy36fo8wo" path="res://Assets/art_placeholder/tiles/temp_tile_set.tres" id="2_7towp"]
+[ext_resource type="TileSet" uid="uid://bqgfdy36fo8wo" path="res://Assets/art_placeholder/tilesets/temp_tile_set.tres" id="2_7towp"]
 [ext_resource type="PackedScene" uid="uid://chi0hp6wl3wq" path="res://Scenes/Characters/Player/player.tscn" id="4_1wsg3"]
 [ext_resource type="PackedScene" uid="uid://cqhdjov61yqrr" path="res://Scenes/Environment/Magnet/magnet.tscn" id="5_vtu5f"]
 

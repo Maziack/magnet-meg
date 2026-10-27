@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxrj4sidvxiia"
-path="res://.godot/imported/Magic Rock.png-353863b73b4e72a780b94178fc75d9fd.ctex"
+uid="uid://ctpu7yobobqgv"
+path="res://.godot/imported/Mid Fog.png-99b3d1f919731186d11b40ba57ecfd0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art_placeholder/tiles/Magic Rock.png"
-dest_files=["res://.godot/imported/Magic Rock.png-353863b73b4e72a780b94178fc75d9fd.ctex"]
+source_file="res://Assets/art_placeholder/Sidescroller Shooter - Central City/Background/Mid Fog.png"
+dest_files=["res://.godot/imported/Mid Fog.png-99b3d1f919731186d11b40ba57ecfd0a.ctex"]
 
 [params]
 
