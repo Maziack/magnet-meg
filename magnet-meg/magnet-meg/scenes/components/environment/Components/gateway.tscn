@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ddjml845ldc0w"]
+
+[ext_resource type="Script" uid="uid://bwb7vhqwsb1yv" path="res://scenes/components/environment/Components/gateway.gd" id="1_6or88"]
+
+[sub_resource type="Gradient" id="Gradient_v5wmw"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0gsxs"]
+gradient = SubResource("Gradient_v5wmw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rba4"]
+size = Vector2(32, 96)
+
+[node name="Gateway" type="Area2D" unique_id=1561812933]
+script = ExtResource("1_6or88")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2086963562]
+texture = SubResource("GradientTexture1D_0gsxs")
+polygon = PackedVector2Array(216, -1417, 216, 239, 352, 239, 352, -1417)
+uv = PackedVector2Array(-28.581818, -60.70678, -23.405334, 55.76381, 270.3594, 62.234406, 270.3594, -56.82443)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1626047889]
+position = Vector2(136, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(216, -1417, 216, 239, 1680, 239, 1680, -1417)
+uv = PackedVector2Array(-32.00003, -56.000008, -32.00003, 63.999992, 271.99997, 63.999992, 271.99997, -56.000008)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=820970114]
+position = Vector2(368, 7)
+shape = SubResource("RectangleShape2D_3rba4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
