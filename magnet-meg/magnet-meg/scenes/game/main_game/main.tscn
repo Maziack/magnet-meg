@@ -5,9 +5,43 @@
 [node name="Main" type="Node" unique_id=1242221]
 script = ExtResource("1_jjgbg")
 
-[node name="World2D" type="Node2D" parent="." unique_id=1961683639]
+[node name="Systems" type="Node" parent="." unique_id=1449968655]
 
-[node name="GUI" type="Control" parent="." unique_id=1737024445]
+[node name="World" type="Node2D" parent="." unique_id=1961683639]
+
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=351257580]
+
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=21372084]
+
+[node name="Effect Root" type="Node2D" parent="World" unique_id=1736905398]
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=1909645398]
+
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=1655621353]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1778549254]
+
+[node name="PauseRoot" type="Control" parent="MenuLayer" unique_id=458836997]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1811003184]
+
+[node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=1876975997]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=385520465]
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=971818442]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
