@@ -8,14 +8,10 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="Magnet Meg"
-run/main_scene="uid://bnw38lniqiabm"
+run/main_scene="uid://b8jtalv6rrabx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]

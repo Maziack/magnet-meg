@@ -3,11 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://x88b3h6oswo" path="res://scenes/gui/buttons/button.tscn" id="1_dgnbk"]
 [ext_resource type="Theme" uid="uid://c81e05m780750" path="res://scenes/gui/themes/menu_theme.tres" id="1_v4jii"]
 [ext_resource type="Script" uid="uid://bu08a3da02vl8" path="res://scenes/gui/menus/menu_main.gd" id="2_537u5"]
-[ext_resource type="Script" uid="uid://dudp67xx5nu1n" path="res://scenes/gui/buttons/button_quit.gd" id="3_smdll"]
-[ext_resource type="Script" uid="uid://hautk1aoo8cg" path="res://scenes/gui/buttons/button_play.gd" id="3_t8oy4"]
-[ext_resource type="Script" uid="uid://dc44523vvaksi" path="res://scenes/gui/buttons/button_options.gd" id="3_xkyku"]
 
-[node name="Menu" type="Control" unique_id=812435869]
+[node name="Menu" type="Control" unique_id=812435869 node_paths=PackedStringArray("default_focus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +15,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_v4jii")
 script = ExtResource("2_537u5")
+default_focus = NodePath("PanelContainer/VBoxContainer/VBoxContainer/PlayButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1630233539]
 layout_mode = 1
@@ -54,8 +52,6 @@ size_flags_horizontal = 4
 [node name="PlayButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1379238236 instance=ExtResource("1_dgnbk")]
 layout_mode = 2
 text = "PLAY"
-script = ExtResource("3_t8oy4")
-targetSceneUID = &"uid://ck664gu32dpa0"
 
 [node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" unique_id=1520716989]
 layout_mode = 1
@@ -75,7 +71,6 @@ theme_type_variation = &"ButtonSubPanel"
 [node name="OptionsButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=307511856 instance=ExtResource("1_dgnbk")]
 layout_mode = 2
 text = "OPTIONS"
-script = ExtResource("3_xkyku")
 
 [node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" unique_id=1526623189]
 layout_mode = 1
@@ -110,7 +105,6 @@ theme_type_variation = &"ButtonSubPanel"
 [node name="QuitButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=714184922 instance=ExtResource("1_dgnbk")]
 layout_mode = 2
 text = "QUIT"
-script = ExtResource("3_smdll")
 
 [node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" unique_id=867735692]
 layout_mode = 1
@@ -142,8 +136,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"ButtonSubPanel"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" to="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" method="_on_pressed"]
-[connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" to="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" method="_on_tree_exiting"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" method="_on_pressed"]
-[connection signal="tree_exiting" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" method="_on_tree_exiting"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" to="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

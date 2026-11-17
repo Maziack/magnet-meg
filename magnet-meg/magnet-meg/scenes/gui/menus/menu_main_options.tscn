@@ -1,8 +1,7 @@
-[gd_scene format=3 uid="uid://d220qy2rpg5o7"]
+[gd_scene format=3 uid="uid://dg1a7e2xwwst4"]
 
-[ext_resource type="Theme" uid="uid://c81e05m780750" path="res://scenes/gui/themes/menu_theme.tres" id="1_tueeo"]
-[ext_resource type="PackedScene" uid="uid://x88b3h6oswo" path="res://scenes/gui/buttons/button.tscn" id="2_ryfyq"]
-[ext_resource type="Script" uid="uid://b1bek2fm5losq" path="res://scenes/gui/buttons/button_back.gd" id="3_v58df"]
+[ext_resource type="Theme" uid="uid://c81e05m780750" path="res://scenes/gui/themes/menu_theme.tres" id="1_x6b4t"]
+[ext_resource type="PackedScene" uid="uid://x88b3h6oswo" path="res://scenes/gui/buttons/button.tscn" id="2_b28qw"]
 
 [node name="Menu" type="Control" unique_id=812435869]
 layout_mode = 3
@@ -13,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_tueeo")
+theme = ExtResource("1_x6b4t")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1630233539]
 layout_mode = 1
@@ -53,10 +52,9 @@ custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="BackButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1379238236 instance=ExtResource("2_ryfyq")]
+[node name="BackButton" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1379238236 instance=ExtResource("2_b28qw")]
 layout_mode = 2
 text = "BACK"
-script = ExtResource("3_v58df")
 
 [node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/VBoxContainer/BackButton" unique_id=1781770421]
 layout_mode = 1
@@ -87,5 +85,3 @@ offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"ButtonSubPanel"
-
-[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/BackButton" to="PanelContainer/VBoxContainer/VBoxContainer/BackButton" method="_on_pressed"]

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://qsccmfikicap" path="res://scenes/components/state_machines/stateMachine.gd" id="1_33a7m"]
 
-[node name="StateMachine" type="Node"]
+[node name="StateMachine" type="Node" unique_id=965385063]
 script = ExtResource("1_33a7m")

@@ -4,15 +4,24 @@ class_name Player
 #FIX BUG WHERE PLAYER CANT JUMP AFTER BEING MAGNETIC THEN LANDING ON GROUND
 
 @export_subgroup("Physics and Timing")
-@export var mass:float = 60 #kg
-@export var gravity:float = 18 #?
-@export var wall_slide_gravity:float = 2 #?
-@export var wall_slide_time:float = 1.5 #sec
-@export var wall_jump_max = 3 #jumps #0 = infinite jumps
+##Player mass in kg
+@export var mass:float = 60
+##Fall acceleration in (px)/(phys tick^2)
+@export var gravity:float = 18
+##Wallslide fall acceleration in (px)/(phys tick^2)
+@export var wall_slide_gravity:float = 2
+##Time in sec before WALLPRESSING becomes FALLING
+@export var wall_slide_time:float = 1.5
+##Max amount of wall jumps before FALLING. (0 = infinite)
+@export var wall_jump_max = 3
+##Raycast that detects when player is touching the wall to the left.
 @export var wall_detect_left: RayCast2D
+##Raycast that detects when player is touching the wall to the right.
 @export var wall_detect_right: RayCast2D
-@export var coyote_time:float = 0.12 #sec
-@export var input_buffer:float = 0.18 #sec
+##Time in sec before RUNNING becomes FALLING
+@export var coyote_time:float = 0.12
+##Time in sec before valid input event is discarded after waiting for proper state trigger and event consumption.
+@export var input_buffer:float = 0.18
 
 
 @export_subgroup("Velocity Settings")
