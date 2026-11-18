@@ -3,12 +3,10 @@ extends Node
 #Main booting point of the game
 #Manages High Level Systems and Scene Loading
 
-
 ### WORLD ROOT NODES ###
-@onready var level_root  : Node2D = %LevelRoot
-@onready var entity_root : Node2D = %EntityRoot
-@onready var effect_root : Node2D = %"Effect Root"
-
+@onready var level_root      : Node2D = %LevelRoot
+@onready var entity_root     : Node2D = %EntityRoot
+@onready var effect_root     : Node2D = %"Effect Root"
 
 ### USER INTERFACE ROOT NODES ###
 @onready var hud_root        : Control = %HudRoot
@@ -17,32 +15,30 @@ extends Node
 @onready var transition_root : Control = %TransitionRoot
 @onready var debug_root      : Control = %DebugRoot
 
-
 ### LEVELS ###
-const TEST_LEVEL_01_UID : String = "uid://ck664gu32dpa0"
-const TEST_LEVEL_02_UID : String = "uid://b8hyatoipvwd5"
-const TEST_LEVEL_03_UID : String = "uid://cjj7apak5ctj4"
-
+const TEST_LEVEL_01_UID      : String = "uid://ck664gu32dpa0"
+const TEST_LEVEL_02_UID      : String = "uid://b8hyatoipvwd5"
+const TEST_LEVEL_03_UID      : String = "uid://cjj7apak5ctj4"
 
 ### MENUS ###
-const MENU_MAIN_UID         : String = "uid://bnw38lniqiabm"
-const MENU_MAIN_OPTIONS_UID : String = "uid://b3po02xnrfssl"
-
+const MENU_MAIN_UID          : String = "uid://bnw38lniqiabm"
+const MENU_MAIN_OPTIONS_UID  : String = "uid://dg1a7e2xwwst4"
 
 ### ENTITIES ###
-const PLAYER_UID : String = "uid://chi0hp6wl3wq"
-
+const PLAYER_UID             : String = "u5id://chi0hp6wl3wq"
 
 ### VARIABLES ###
-var player        : Player    = null
-var current_menu  : BaseMenu   = null
-var current_level : BaseLevel = null
+var player                   : Player    = null
+var current_menu             : BaseMenu  = null
+var current_level            : BaseLevel = null
 
 
 ### FUNCTIONS ###
 func _ready() -> void:
 	_load_menu(MENU_MAIN_UID)
 
+##To load a menu scene. Requires menu UID string.
+##NOTE: The input UID scene must extend BaseMenu.
 func _load_menu(menu_scene_uid : String) -> void:
 	_load_menu_deferred.call_deferred(menu_scene_uid)
 
@@ -52,8 +48,7 @@ func _load_menu_deferred(menu_scene_uid : String) -> void:
 		current_menu = null
 		await get_tree().process_frame
 	
-	var new_menu_scene : PackedScene =\
-		ResourceLoader.load(menu_scene_uid, "PackedScene") as PackedScene
+	var new_menu_scene : PackedScene = ResourceLoader.load(menu_scene_uid, "PackedScene") as PackedScene
 	
 	if new_menu_scene == null:
 		push_error("Unable to load menu scene ", menu_scene_uid)
@@ -91,8 +86,7 @@ func _load_level_deferred(level_scene_uid : String) -> void:
 		current_level = null
 		await get_tree().process_frame
 	
-	var new_level_scene : PackedScene =\
-		ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
+	var new_level_scene : PackedScene = ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
 	
 	if new_level_scene == null:
 		push_error("Unable to load level scene ", level_scene_uid)

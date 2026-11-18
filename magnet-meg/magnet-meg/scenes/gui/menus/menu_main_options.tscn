@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dg1a7e2xwwst4"]
 
 [ext_resource type="Theme" uid="uid://c81e05m780750" path="res://scenes/gui/themes/menu_theme.tres" id="1_x6b4t"]
+[ext_resource type="Script" uid="uid://bowfp3lrixvql" path="res://scenes/gui/menus/menu_main_options.gd" id="2_7gadi"]
 [ext_resource type="PackedScene" uid="uid://x88b3h6oswo" path="res://scenes/gui/buttons/button.tscn" id="2_b28qw"]
 
-[node name="Menu" type="Control" unique_id=812435869]
+[node name="Menu" type="Control" unique_id=812435869 node_paths=PackedStringArray("default_focus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +14,8 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_x6b4t")
+script = ExtResource("2_7gadi")
+default_focus = NodePath("PanelContainer/VBoxContainer/VBoxContainer/BackButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1630233539]
 layout_mode = 1
@@ -85,3 +88,5 @@ offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"ButtonSubPanel"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
