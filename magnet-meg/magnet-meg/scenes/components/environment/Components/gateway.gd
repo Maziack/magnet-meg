@@ -1,3 +1,4 @@
+class_name Gateway
 extends Area2D
 
 @export var targetScene: StringName

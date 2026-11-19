@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://2su76tvaq620"]
+
+[ext_resource type="Script" uid="uid://ixdaf6j1jwhd" path="res://scenes/components/environment/Components/spawn_point.gd" id="1_stk8w"]
+
+[node name="SpawnPoint" type="Node2D" unique_id=2034941540 node_paths=PackedStringArray("raycast")]
+scale = Vector2(5, 1)
+script = ExtResource("1_stk8w")
+raycast = NodePath("RayCast2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1641439104]

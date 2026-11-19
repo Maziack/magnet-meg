@@ -43,12 +43,10 @@ func _load_menu(menu_scene_uid : String) -> void:
 	_load_menu_deferred.call_deferred(menu_scene_uid)
 
 func _load_menu_deferred(menu_scene_uid : String) -> void:
-	if is_instance_valid(current_menu):
-		current_menu.queue_free()
-		current_menu = null
-		await get_tree().process_frame
+	_free_current_menu()
 	
-	var new_menu_scene : PackedScene = ResourceLoader.load(menu_scene_uid, "PackedScene") as PackedScene
+	var new_menu_scene : PackedScene =\
+	 ResourceLoader.load(menu_scene_uid, "PackedScene") as PackedScene
 	
 	if new_menu_scene == null:
 		push_error("Unable to load menu scene ", menu_scene_uid)
@@ -70,23 +68,28 @@ func _load_menu_deferred(menu_scene_uid : String) -> void:
 		current_menu = null
 		return
 	
-	
-	
 	menu_root.add_child(current_menu)
+
+func _free_current_menu() -> void:
+	if is_instance_valid(current_menu):
+		current_menu.queue_free()
+		current_menu = null
+		await get_tree().process_frame
 
 ##To load a level scene. Requires level UID string.
 ##NOTE: The input UID scene must extend BaseLevel.
 func _load_level(level_scene_uid : String) -> void:
 	_load_level_deferred.call_deferred(level_scene_uid)
-
+	_load_player()
+	print("Current Level: ", current_level.name)
+	player.position = current_level.get_player_spawn()
 
 func _load_level_deferred(level_scene_uid : String) -> void:
-	if is_instance_valid(current_level):
-		current_level.queue_free()
-		current_level = null
-		await get_tree().process_frame
+	_free_current_level()
+	_free_current_menu()
 	
-	var new_level_scene : PackedScene = ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
+	var new_level_scene : PackedScene =\
+	 ResourceLoader.load(level_scene_uid, "PackedScene") as PackedScene
 	
 	if new_level_scene == null:
 		push_error("Unable to load level scene ", level_scene_uid)
@@ -106,9 +109,16 @@ func _load_level_deferred(level_scene_uid : String) -> void:
 	
 	level_root.add_child(current_level)
 
+func _free_current_level() -> void:
+	if is_instance_valid(current_level):
+		current_level.queue_free()
+		current_level = null
+		await get_tree().process_frame
 
 func _load_player() -> void:
-	var player_scene : PackedScene = ResourceLoader.load(PLAYER_UID) as PackedScene
+	var player_scene : PackedScene =\
+	 ResourceLoader.load(PLAYER_UID, "PackedScene") as PackedScene
+	
 	if player_scene == null:
 		push_error("Unable to load player scene while initializing player. Scene ",PLAYER_UID)
 		return

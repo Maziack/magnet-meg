@@ -57,6 +57,5 @@ func _ready() -> void:
 	globalVar.playerRespawnPosition = global_position
 
 func _physics_process(_delta: float) -> void:
-	
 	velocity = (velocity).clamp(Vector2(-1*max_velocity,-1*max_velocity),Vector2(max_velocity,max_velocity))
 	move_and_slide()

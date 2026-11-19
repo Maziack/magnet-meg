@@ -1,7 +1,7 @@
 extends BaseMenu
 
 func _on_play_button_pressed() -> void:
-	load_level(main.TEST_LEVEL_01)
+	load_level(main.TEST_LEVEL_01_UID)
 
 
 func _on_options_button_pressed() -> void:

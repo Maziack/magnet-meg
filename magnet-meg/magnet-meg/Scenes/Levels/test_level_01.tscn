@@ -4,9 +4,13 @@
 [ext_resource type="Script" uid="uid://dn4ukq62y733x" path="res://scenes/levels/test_level_01.gd" id="1_v4k6c"]
 [ext_resource type="PackedScene" uid="uid://cqhdjov61yqrr" path="res://scenes/components/environment/Magnet/magnet.tscn" id="3_ayfar"]
 [ext_resource type="PackedScene" uid="uid://ddjml845ldc0w" path="res://scenes/components/environment/Components/gateway.tscn" id="4_t2noo"]
+[ext_resource type="PackedScene" uid="uid://2su76tvaq620" path="res://scenes/components/environment/Components/spawn_point.tscn" id="5_ayfar"]
+[ext_resource type="PackedScene" uid="uid://chi0hp6wl3wq" path="res://scenes/characters/player/player.tscn" id="6_t2noo"]
 
-[node name="Level" type="Node2D" unique_id=1216956226]
+[node name="Level" type="Node2D" unique_id=1216956226 node_paths=PackedStringArray("player", "player_spawn")]
 script = ExtResource("1_v4k6c")
+player = NodePath("Player")
+player_spawn = NodePath("SpawnPoint")
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=889923782]
 position = Vector2(577, 650)
@@ -15,22 +19,27 @@ tile_map_data = PackedByteArray("AAAAAAIAAAARAAIAAAABAAIAAAAAAAIAAAACAAIAAAABAAI
 tile_set = ExtResource("1_ri2k4")
 
 [node name="Magnet" parent="." unique_id=426462504 instance=ExtResource("3_ayfar")]
+visible = false
 position = Vector2(-454, 60)
 orbitRadius = 2.3
 
 [node name="Magnet2" parent="." unique_id=1487369393 instance=ExtResource("3_ayfar")]
+visible = false
 position = Vector2(-1577, 50)
 orbitRadius = 2.3
 
 [node name="Magnet3" parent="." unique_id=1615273721 instance=ExtResource("3_ayfar")]
+visible = false
 position = Vector2(675, 62)
 orbitRadius = 2.3
 
 [node name="Magnet4" parent="." unique_id=949326723 instance=ExtResource("3_ayfar")]
+visible = false
 position = Vector2(-707, -866)
 orbitRadius = 2.3
 
 [node name="Magnet5" parent="." unique_id=367542681 instance=ExtResource("3_ayfar")]
+visible = false
 position = Vector2(895, -1070)
 orbitRadius = 2.3
 
@@ -43,5 +52,11 @@ polygon = PackedVector2Array(216, -2256, 216, 600, 352, 600, 352, -2256)
 
 [node name="Polygon2D2" parent="Gateway" index="1" unique_id=1626047889]
 polygon = PackedVector2Array(216, -2256, 216, 600, 1680, 600, 1680, -2256)
+
+[node name="SpawnPoint" parent="." unique_id=281818575 instance=ExtResource("5_ayfar")]
+position = Vector2(-2141, -493)
+
+[node name="Player" parent="." unique_id=980870281 instance=ExtResource("6_t2noo")]
+position = Vector2(-836, 632)
 
 [editable path="Gateway"]
