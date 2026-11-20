@@ -16,16 +16,27 @@ extends Node
 @onready var debug_root      : Control = %DebugRoot
 
 ### LEVELS ###
-const TEST_LEVEL_01_UID      : String = "uid://ck664gu32dpa0"
-const TEST_LEVEL_02_UID      : String = "uid://b8hyatoipvwd5"
-const TEST_LEVEL_03_UID      : String = "uid://cjj7apak5ctj4"
+const TEST_LEVEL_01      : String = "uid://ck664gu32dpa0"
+const TEST_LEVEL_02      : String = "uid://b8hyatoipvwd5"
+const TEST_LEVEL_03      : String = "uid://cjj7apak5ctj4"
+
+var   level                  : Dictionary = {
+	"TEST_LEVEL_01" : "uid://ck664gu32dpa0",
+	"TEST_LEVEL_02" : "uid://b8hyatoipvwd5",
+	"TEST_LEVEL_03" : "uid://cjj7apak5ctj4"
+}
+enum  level_enum {
+	TEST_LEVEL_01,
+	TEST_LEVEL_02,
+	TEST_LEVEL_03
+}
 
 ### MENUS ###
 const MENU_MAIN_UID          : String = "uid://bnw38lniqiabm"
 const MENU_MAIN_OPTIONS_UID  : String = "uid://dg1a7e2xwwst4"
 
 ### ENTITIES ###
-const PLAYER_UID             : String = "u5id://chi0hp6wl3wq"
+const PLAYER_UID             : String = "uid://chi0hp6wl3wq"
 
 ### VARIABLES ###
 var player                   : Player    = null
@@ -58,11 +69,7 @@ func _load_menu_deferred(menu_scene_uid : String) -> void:
 		push_error("Unable to instantiate menu scene ", menu_scene_uid)
 		return
 	
-	if current_menu is BaseMenu:
-		current_menu.load_menu_signal.connect(_load_menu)
-		current_menu.load_level_signal.connect(_load_level)
-
-	else:
+	if not current_menu is BaseMenu:
 		push_error("Loaded menu is not of type BaseMenu. Scene ", menu_scene_uid)
 		current_menu.free()
 		current_menu = null
@@ -80,9 +87,6 @@ func _free_current_menu() -> void:
 ##NOTE: The input UID scene must extend BaseLevel.
 func _load_level(level_scene_uid : String) -> void:
 	_load_level_deferred.call_deferred(level_scene_uid)
-	_load_player()
-	print("Current Level: ", current_level.name)
-	player.position = current_level.get_player_spawn()
 
 func _load_level_deferred(level_scene_uid : String) -> void:
 	_free_current_level()
@@ -108,6 +112,12 @@ func _load_level_deferred(level_scene_uid : String) -> void:
 		return
 	
 	level_root.add_child(current_level)
+	_load_player()
+	print("Current Level: ", current_level.name)
+
+func _load_level_enum(target_level : int) -> void:
+	var level_scene_uid : String = level.values()[target_level]
+	_load_level(level_scene_uid)
 
 func _free_current_level() -> void:
 	if is_instance_valid(current_level):
@@ -129,6 +139,7 @@ func _load_player() -> void:
 		return
 	
 	entity_root.add_child(player)
+	player.position = current_level.get_player_spawn()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

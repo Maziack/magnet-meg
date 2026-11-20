@@ -7,5 +7,5 @@ extends Node2D
 var spawn_position  : Vector2
 
 func get_spawn_position() -> Vector2:
-	spawn_position = raycast.target_position
+	spawn_position = to_global(raycast.target_position)
 	return spawn_position

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://yf4sgwbh6x1b"]
+
+[sub_resource type="Gradient" id="Gradient_v5wmw"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0gsxs"]
+gradient = SubResource("Gradient_v5wmw")
+
+[node name="LevelBlackout" type="Node2D" unique_id=1356862374]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1702349386]
+texture = SubResource("GradientTexture1D_0gsxs")
+polygon = PackedVector2Array(216, -1417, 216, 239, 352, 239, 352, -1417)
+uv = PackedVector2Array(-28.581818, -60.70678, -23.405334, 55.76381, 270.3594, 62.234406, 270.3594, -56.82443)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=273274600]
+position = Vector2(136, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(216, -1417, 216, 239, 1680, 239, 1680, -1417)
+uv = PackedVector2Array(-32.00003, -56.000008, -32.00003, 63.999992, 271.99997, 63.999992, 271.99997, -56.000008)

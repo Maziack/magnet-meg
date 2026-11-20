@@ -1,9 +1,12 @@
 class_name Gateway
 extends Area2D
 
-@export var targetScene: StringName
+@onready var main = get_tree().current_scene as Main
+
+@export var target_level: Main.level_enum
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		get_tree().change_scene_to_file(ResourceUID.uid_to_path(targetScene))
+		print("Gateway _on_body_entered target_level: ", target_level)
+		main._load_level_enum(target_level)
 		

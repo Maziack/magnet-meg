@@ -31,7 +31,7 @@ class_name Player
 @export var run_decel_speed:float = 40 #px
 @export var air_accel_speed:float = 16 #px
 @export var air_decel_speed:float = 2 #px
-@export var top_input_speed:float = 500 #px
+@export var top_input_speed:float = 350 #px
 @export_range(0,2500, 25) var max_velocity:float = 2000 #px #change this for underwater type magnetic movement?
 
 @export_subgroup("Magnet Settings")

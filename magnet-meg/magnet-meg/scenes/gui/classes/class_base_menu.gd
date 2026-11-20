@@ -15,7 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		default_focus.grab_focus()
 
 func load_menu(scene_uid) -> void:
-	load_menu_signal.emit(scene_uid)
+	main._load_menu(scene_uid)
 
 func load_level(scene_uid) -> void:
-	load_level_signal.emit(scene_uid)
+	main._load_level(scene_uid)
