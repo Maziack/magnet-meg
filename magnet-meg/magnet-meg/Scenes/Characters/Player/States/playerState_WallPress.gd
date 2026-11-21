@@ -4,7 +4,7 @@ extends PlayerState
 var slide_timer_finished: bool
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	print(owner.name," is ", name, " after ", _previous_state_path)
+	#print(owner.name," is ", name, " after ", _previous_state_path)
 	
 	if (player.wall_jump_max != 0) and (player.wall_jump_count >= player.wall_jump_max):
 		player.can_jump = false

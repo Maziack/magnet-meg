@@ -4,7 +4,7 @@ extends PlayerState
 @export var wall_jump_cooldown: Timer
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	print(owner.name," is ", name)
+	#print(owner.name," is ", name)
 	
 	if _previous_state_path == WALLPRESSING:
 		player.wall_jump_count = player.wall_jump_count + 1

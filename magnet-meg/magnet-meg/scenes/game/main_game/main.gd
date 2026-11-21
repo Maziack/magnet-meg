@@ -20,11 +20,13 @@ const TEST_LEVEL_01      : String = "uid://ck664gu32dpa0"
 const TEST_LEVEL_02      : String = "uid://b8hyatoipvwd5"
 const TEST_LEVEL_03      : String = "uid://cjj7apak5ctj4"
 
+#Entries must be in same order as level_enum Enum
 var   level                  : Dictionary = {
 	"TEST_LEVEL_01" : "uid://ck664gu32dpa0",
 	"TEST_LEVEL_02" : "uid://b8hyatoipvwd5",
 	"TEST_LEVEL_03" : "uid://cjj7apak5ctj4"
 }
+#Entries must be in same order as level Dictionary
 enum  level_enum {
 	TEST_LEVEL_01,
 	TEST_LEVEL_02,
@@ -42,6 +44,7 @@ const PLAYER_UID             : String = "uid://chi0hp6wl3wq"
 var player                   : Player    = null
 var current_menu             : BaseMenu  = null
 var current_level            : BaseLevel = null
+var previous_level           : String
 
 
 ### FUNCTIONS ###
@@ -112,11 +115,15 @@ func _load_level_deferred(level_scene_uid : String) -> void:
 		return
 	
 	level_root.add_child(current_level)
-	_load_player()
+	if not is_instance_valid(player): _load_player()
+	else: _place_player()
+		
 	print("Current Level: ", current_level.name)
 
 func _load_level_enum(target_level : int) -> void:
+	print("Main;  _load_level_enum target_level: ", target_level)
 	var level_scene_uid : String = level.values()[target_level]
+	print("Main;  _load_level_enum level_scene_uid: ", level_scene_uid)
 	_load_level(level_scene_uid)
 
 func _free_current_level() -> void:
@@ -139,6 +146,9 @@ func _load_player() -> void:
 		return
 	
 	entity_root.add_child(player)
+	_place_player()
+
+func _place_player() -> void:
 	player.position = current_level.get_player_spawn()
 
 func _unhandled_key_input(event: InputEvent) -> void:

@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(_previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	print(owner.name," is ", name)
+	#print(owner.name," is ", name)
 	player.wall_jump_count = 0
 	if _data:
 		finished.emit(_data.queued_action)

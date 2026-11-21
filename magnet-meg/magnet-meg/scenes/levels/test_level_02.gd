@@ -1,0 +1,2 @@
+class_name TestLevel02
+extends BaseLevel

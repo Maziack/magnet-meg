@@ -2,17 +2,23 @@
 
 [ext_resource type="Script" uid="uid://bwb7vhqwsb1yv" path="res://scenes/components/environment/Components/gateway.gd" id="1_6or88"]
 [ext_resource type="PackedScene" uid="uid://yf4sgwbh6x1b" path="res://scenes/components/environment/Components/level_blackout.tscn" id="2_aewyb"]
+[ext_resource type="PackedScene" uid="uid://2su76tvaq620" path="res://scenes/components/environment/Components/spawn_point.tscn" id="3_safpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rba4"]
 size = Vector2(32, 96)
 
-[node name="Gateway" type="Area2D" unique_id=1561812933]
+[node name="Gateway" type="Area2D" unique_id=1561812933 node_paths=PackedStringArray("player_spawn")]
 script = ExtResource("1_6or88")
+player_spawn = NodePath("SpawnPoint")
 
 [node name="LevelBlackout" parent="." unique_id=1356862374 instance=ExtResource("2_aewyb")]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=820970114]
 position = Vector2(368, 7)
 shape = SubResource("RectangleShape2D_3rba4")
+
+[node name="SpawnPoint" parent="." unique_id=2034941540 instance=ExtResource("3_safpl")]
+position = Vector2(310, 32)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

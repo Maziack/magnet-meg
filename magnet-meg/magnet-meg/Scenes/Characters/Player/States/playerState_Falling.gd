@@ -4,7 +4,7 @@ extends PlayerState
 @export var input_buffer: Timer
 
 func enter(previous_state_path: String = "", _data: Dictionary = {}) -> void:
-	print(owner.name," is ", name)
+	#print(owner.name," is ", name)
 	if previous_state_path == RUNNING:
 		player.can_jump = true
 		coyote_timer.wait_time = player.coyote_time
